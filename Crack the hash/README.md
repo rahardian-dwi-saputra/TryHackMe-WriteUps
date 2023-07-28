@@ -40,11 +40,27 @@ letmein
 ### Task 4
 - Hash: $2y$12$Dwt1BZj6pcyc3Dy1FWZ5ieeUznr71EeNkJkUlypTsgbX1H68wsRom
 - Gunakan tool analisa hash online [Hash Analyzer](https://www.tunnelsup.com/hash-analyzer/) untuk mengetahui jenis algoritma hash yang digunakan
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Crack%20the%20hash/assets/ch%204.JPG)
+
 - Gunakan baris perintah `hashcat --help | grep bcrypt` untuk mengetahui mode yang digunakan pada tool hashcat untuk algoritma bcrypt
-- Dari format hash yang diberikan dan hasil analisa diatas, maka nomor mode hashcat yang akan digunakan adalah 3200
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Crack%20the%20hash/assets/ch%205.JPG)
+
+- Dari format hash yang diberikan dan hasil analisa diatas, maka nomor mode hashcat yang akan digunakan adalah **3200**
 - Dari petunjuk soal, diketahui bahwa format jawaban hanya terdiri dari 4 karakter. Jadi kita filter wordlists rockyou.txt yang hanya memiliki panjang 4 karakter saja untuk mempersingkat waktu. Baris perintah yang digunakan: `awk 'length($0) == 4' /usr/share/wordlists/rockyou.txt > rockyou-length4.txt`
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Crack%20the%20hash/assets/ch%206.JPG)
+
 - Simpan hash kedalam sebuah file dengan baris perintah `echo 'hash' > nama_file`
-- Lakukan crack hash dengan baris perintah `hashcat -m 3200 <file hash> <wordlists>`
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Crack%20the%20hash/assets/ch%207.JPG)
+
+- Lakukan crack hash dengan baris perintah `hashcat -m <mode> <file hash> <wordlists>`
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Crack%20the%20hash/assets/ch%208.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Crack%20the%20hash/assets/ch%209.JPG)
+
 - Jawaban:
 ```sh
 bleh
@@ -54,7 +70,7 @@ bleh
 - Hash: 279412f945939ba78ce0758d3fd83daa
 - Gunakan tool crack hash online [CrackStation](https://crackstation.net/)
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Crack%20the%20hash/assets/ch%203.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Crack%20the%20hash/assets/ch%2010.JPG)
 
 - Jawaban:
 ```sh
@@ -68,7 +84,7 @@ Tugas ini meningkatkan kesulitan. Semua jawaban akan ada di daftar kata sandi ro
 - Hash: F09EDCB1FCEFC6DFB23DC3505A882655FF77375ED8AA2D1C13F640FCCC2D0C85
 - Gunakan tool crack hash online [CrackStation](https://crackstation.net/)
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Crack%20the%20hash/assets/ch%203.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Crack%20the%20hash/assets/ch%2011.JPG)
 
 - Jawaban:
 ```sh
@@ -79,7 +95,7 @@ paule
 - Hash: 1DFECA0C002AE40B8619ECF94819CC1B
 - Gunakan tool crack hash online [CrackStation](https://crackstation.net/)
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Crack%20the%20hash/assets/ch%203.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Crack%20the%20hash/assets/ch%2012.JPG)
 
 - Jawaban:
 ```sh
@@ -90,11 +106,33 @@ n63umy8lkf4i
 - Hash: $6$aReallyHardSalt$6WKUTqzq.UQQmrm0p/T7MPpMbGNnzXPMAXi4bJMl9be.cfi3/qxIf.hsGpS41BqMhSrHVXgMpdjS6xeKZAs02.
 - Salt: aReallyHardSalt
 - Gunakan tool hashid untuk mengetahui jenis algoritma hash dan mode hashcat yang akan digunakan. Gunakan baris perintah `hashid -m 'hash'`
-- Dari hasil analisa diatas, maka nomor mode hashcat yang akan digunakan adalah 1800
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Crack%20the%20hash/assets/ch%2013.JPG)
+
+- Dari hasil analisa diatas, maka nomor mode hashcat yang akan digunakan adalah **1800**
 - Dari petunjuk soal, diketahui bahwa format jawaban hanya terdiri dari 6 karakter. Jadi kita filter wordlists rockyou.txt yang hanya memiliki panjang 6 karakter saja untuk mempersingkat waktu. Baris perintah yang digunakan `awk 'length($0) == 6' /usr/share/wordlists/rockyou.txt > rockyou-length6.txt`
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Crack%20the%20hash/assets/ch%2014.JPG)
+
 - Simpan hash kedalam sebuah file dengan baris perintah `echo 'hash' > nama_file`
-- Lakukan crack hash dengan baris perintah `hashcat -m 1800 <file hash> <wordlists>`
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Crack%20the%20hash/assets/ch%2015.JPG)
+
+- Lakukan crack hash dengan baris perintah `hashcat -m <mode> <file hash> <wordlists>`
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Crack%20the%20hash/assets/ch%2016.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Crack%20the%20hash/assets/ch%2017.JPG)
+
 - Jawaban:
 ```sh
 waka99
 ```
+
+### Task 4
+- Hash: e5d8870e5bdd26602cab8dbe07a942c8669e56d6
+- Salt: tryhackme
+- Dari petunjuk soal diketahui bahwa algoritma hash yang digunakan adalah **HMAC-SHA1**
+- Dari website [Haschat Example hashes](https://hashcat.net/wiki/doku.php?id=example_hashes) diketahui format Hash HMAC-SHA1 adalah sebagai berikut
+- Karena hash menggunakan salt, maka nomor mode hashcat yang akan digunakan adalah **160**
+- Simpan hash dengan format hash:salt kedalam sebuah file dengan baris perintah `echo 'hash' > nama_file`
+- Lakukan crack hash dengan baris perintah `hashcat -m <mode> <file hash> <wordlists>`
