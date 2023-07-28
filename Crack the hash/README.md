@@ -133,6 +133,20 @@ waka99
 - Salt: tryhackme
 - Dari petunjuk soal diketahui bahwa algoritma hash yang digunakan adalah **HMAC-SHA1**
 - Dari website [Haschat Example hashes](https://hashcat.net/wiki/doku.php?id=example_hashes) diketahui format Hash HMAC-SHA1 adalah sebagai berikut
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Crack%20the%20hash/assets/ch%2018.JPG)
+
 - Karena hash menggunakan salt, maka nomor mode hashcat yang akan digunakan adalah **160**
 - Simpan hash dengan format hash:salt kedalam sebuah file dengan baris perintah `echo 'hash' > nama_file`
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Crack%20the%20hash/assets/ch%2019.JPG)
+
 - Lakukan crack hash dengan baris perintah `hashcat -m <mode> <file hash> <wordlists>`
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Crack%20the%20hash/assets/ch%2020.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Crack%20the%20hash/assets/ch%2021.JPG)
+
+- Jawaban:
+```sh
+481616481616
+```
