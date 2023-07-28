@@ -1,5 +1,5 @@
 # Solusi - Hydra
-- TryHackMe Room: [https://tryhackme.com/room/hydra](https://tryhackme.com/room/hydra)
+- TryHackMe Room: https://tryhackme.com/room/hydra
 - IP Machine: 10.10.93.97
 
 ## Pertanyaan/Tugas:
@@ -17,7 +17,7 @@
 
 **Pertanyaan:** Use Hydra to bruteforce molly's web password. What is flag 1?
 
-- Jawaban:
+**Jawaban:**
 ```sh
 THM{2673a7dd116de68e85c48ec0b1f2612e}
 ```
@@ -32,7 +32,7 @@ THM{2673a7dd116de68e85c48ec0b1f2612e}
 
 **Pertanyaan:** Use Hydra to bruteforce molly's SSH password. What is flag 2?
 
-- Jawaban:
+**Jawaban:**
 ```sh
 THM{c8eeb0468febbadea859baeb33b2541b}
 ```
