@@ -68,7 +68,7 @@ ms17-010
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%202.JPG)
 
-- Disini kita menggunakan modul **exploit/windows/smb/ms17_010_eternalblue** sesuai nama room yang ada di list nomor 0. Jadi cukup gunakan perintah `use 0`
+- Disini kita menggunakan modul **exploit/windows/smb/ms17_010_eternalblue** sesuai dengan topik pada path ini yaitu **eternal blue** yang ada di list nomor 0. Jadi cukup gunakan perintah `use 0`
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%203.JPG)
 
