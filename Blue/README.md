@@ -111,7 +111,7 @@ Nmap done: 1 IP address (1 host up) scanned in 145.80 seconds
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2015.JPG)
 
-- Lakukan migrate dengan perintah `migrate <PID>`
+- Lakukan migrate dengan services.exe. Gunakan perintah `migrate <PID>`
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2016.JPG)
 
@@ -119,10 +119,31 @@ Nmap done: 1 IP address (1 host up) scanned in 145.80 seconds
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2017.JPG)
 
-- Simpan hash user Jon kedalam file untuk melakukan cracking dengan perintah `echo hash > nama_file`
+- Simpan hash user Jon kedalam sebuah file di local untuk melakukan cracking dengan perintah `echo hash > nama_file`
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2018.JPG)
 
 - Lakukan cracking dengan tool john the ripper `john --wordlist=/usr/share/wordlists/rockyou.txt nama_file`
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2019.JPG)
+
+- Jika kita ketik `pwd` di meterpreter kita berada di directory C:\Windows\system32 
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2020.JPG)
+
+- Navigasi ke directory C: dengan perintah `cd ../../` maka disana ditemukan file **flag1.txt**
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2021.JPG)
+
+- Buka file **flag1.txt** dengan perintah `cat nama_file`
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2022.JPG)
+
+- Cari lokasi file **flag2.txt** dan **flag3.txt** dengan perintah `search -f flag*.txt`
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2023.JPG)
+
+- Buka masing-masing file **flag2.txt** dan **flag3.txt** yang sudah ditemukan
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2024.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2025.JPG)
