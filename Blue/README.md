@@ -114,3 +114,15 @@ Nmap done: 1 IP address (1 host up) scanned in 145.80 seconds
 - Lakukan migrate dengan perintah `migrate <PID>`
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2016.JPG)
+
+- Ketik `hashdump` maka akan diperoleh daftar user beserta passwordnya yang di hash
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2017.JPG)
+
+- Simpan hash user Jon kedalam file untuk melakukan cracking dengan perintah `echo hash > nama_file`
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2018.JPG)
+
+- Lakukan cracking dengan tool john the ripper `john --wordlist=/usr/share/wordlists/rockyou.txt nama_file`
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2019.JPG)
