@@ -107,10 +107,15 @@ Ubuntu
 ## Task 3 Locating directories using Gobuster
 - Buka halaman web `http://<IP_Machine>:3333` di browser
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%201.JPG)
 
 - Lakukan web directory brute force dengan gobuster dengan perintah `gobuster dir -u http://<IP_Machine>:3333 -w <wordlists>`
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%202.JPG)
+
 - Dari hasil brute force gobuster diatas ditemukan halaman **/internal**. Kita bisa membuka di browser dengan url `http://<IP_Machine>:3333/internal` di browser. Setelah dibuka halaman tersebut sebuah form untuk upload file
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%203.JPG)
 
 - **Pertanyaan:** What is the directory that has an upload form page?
 ```sh
@@ -119,23 +124,40 @@ Ubuntu
 
 ## Task 4 Compromise the Webserver
 - Disini kita memanfaatkan celah keamanan **File Upload Vulnerabilities**. Salah satunya adalah dengan mengunggah file php reverse shell ke halaman upload file. Kita bisa mengunduh file php-reverse-shell di https://pentestmonkey.net/tools/web-shells/php-reverse-shell
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%204.JPG)
+
 - Setelah berhasil diunduh, edit file **php-reverse-shell.php** dengan menggunakan tool nano. Ubah ip dengan IP tun0 di komputer yang anda gunakan dan disini kita memakai port 4444 sebagai listening
 
-- Unggah file **php-reverse-shell.php** yang sudah diedit ke halaman `http://<IP_Machine>:3333/internal` dan tekan Submit. Setelah di submit ternyata muncul pesan bahwa extensi file tidak di izinkan 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%205.JPG)
+
+- Unggah file **php-reverse-shell.php** yang sudah diedit ke halaman `http://<IP_Machine>:3333/internal` dan tekan Submit. Setelah di submit ternyata muncul pesan bahwa extensi file tidak di izinkan
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%206.JPG)
 
 - Kita bisa mencoba dengan format lain. Jalankan Burpsuite dan lakukan upload ulang untuk merekam request upload file
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%207.JPG)
+
 - Klik kanan pada request upload file lalu pilih **Send to Intruder**. Pindah ke Tab Intruder lalu tekan tombol **Clear §** lalu block tulisan .php lalu tekan tombol **Add §**
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%208.JPG)
 
 - Pindah ke tab Payloads, bikin payload dengan type Simple list dan berisi daftar sebagai berikut
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%208.JPG)
+
 - Scroll ke bawah, pada bagian Payload Encoding hilangkan centang pada opsi URL-encode
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%208.JPG)
 
 - Jalankan serangan dengan menekan tombol Start attack dan tunggu hingga proses selesai. Hasilnya payload **.phtml** memiliki panjang response yang paling berbeda dan memiliki pesan **Success** dibagian Response yang menandakan bahwa format **.phtml** adalah format file yang diizinkan
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%209.JPG)
 
 - Kita bisa menduplikasi file **php-reverse-shell.php** dan menamainya dengan **php-reverse-shell.phtml** dengan perintah `cp php-reverse-shell.php php-reverse-shell.phtml`
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%2010.JPG)
 
 - Upload file **php-reverse-shell.php** ke halaman `http://<IP_Machine>:3333/internal` dan pastikan muncul pesan **Success**
 
