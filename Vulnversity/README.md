@@ -124,10 +124,9 @@ Ubuntu
 
 ## Task 4 Compromise the Webserver
 - Disini kita memanfaatkan celah keamanan **File Upload Vulnerabilities**. Salah satunya adalah dengan mengunggah file php reverse shell ke halaman upload file. Kita bisa mengunduh file php-reverse-shell di https://pentestmonkey.net/tools/web-shells/php-reverse-shell
+- Setelah berhasil diunduh, edit file **php-reverse-shell.php** dengan menggunakan tool nano. Ubah ip dengan IP tun0 di komputer yang anda gunakan dan disini kita memakai port 4444 sebagai listening
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%204.JPG)
-
-- Setelah berhasil diunduh, edit file **php-reverse-shell.php** dengan menggunakan tool nano. Ubah ip dengan IP tun0 di komputer yang anda gunakan dan disini kita memakai port 4444 sebagai listening
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%205.JPG)
 
@@ -145,21 +144,23 @@ Ubuntu
 
 - Pindah ke tab Payloads, bikin payload dengan type Simple list dan berisi daftar sebagai berikut
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%208.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%209.JPG)
 
 - Scroll ke bawah, pada bagian Payload Encoding hilangkan centang pada opsi URL-encode
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%208.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%2010.JPG)
 
 - Jalankan serangan dengan menekan tombol Start attack dan tunggu hingga proses selesai. Hasilnya payload **.phtml** memiliki panjang response yang paling berbeda dan memiliki pesan **Success** dibagian Response yang menandakan bahwa format **.phtml** adalah format file yang diizinkan
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%209.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%2011.JPG)
 
 - Kita bisa menduplikasi file **php-reverse-shell.php** dan menamainya dengan **php-reverse-shell.phtml** dengan perintah `cp php-reverse-shell.php php-reverse-shell.phtml`
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%2010.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%2011.JPG)
 
 - Upload file **php-reverse-shell.php** ke halaman `http://<IP_Machine>:3333/internal` dan pastikan muncul pesan **Success**
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%2012.JPG)
 
 - Buka terminal dan jalankan netcat dengan perintah `nc -lnvp <port>`
 
