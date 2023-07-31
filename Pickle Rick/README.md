@@ -121,7 +121,7 @@ sudo bash
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%2015.JPG)
 
-- Setelah berhasil masuk ke user root, navigasi ke directory **/root** maka disini ditemukan file **3rd.txt** yang berisi final ingredient. Buka file tersebut dengan perintah `cat 3rd.txt`
+- Setelah berhasil masuk sebagai user root, navigasi ke directory **/root** maka disini ditemukan file **3rd.txt** yang berisi final ingredient. Buka file tersebut dengan perintah `cat 3rd.txt`
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%2016.JPG)
 
