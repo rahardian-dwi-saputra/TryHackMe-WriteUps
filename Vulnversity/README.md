@@ -156,20 +156,24 @@ Ubuntu
 
 - Kita bisa menduplikasi file **php-reverse-shell.php** dan menamainya dengan **php-reverse-shell.phtml** dengan perintah `cp php-reverse-shell.php php-reverse-shell.phtml`
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%2011.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%2012.JPG)
 
 - Upload file **php-reverse-shell.php** ke halaman `http://<IP_Machine>:3333/internal` dan pastikan muncul pesan **Success**
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%2012.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%2013.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%2014.JPG)
 
 - Buka terminal dan jalankan netcat dengan perintah `nc -lnvp <port>`
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%2015.JPG)
 
 - Jalankan payload dengan membuka url `http://<IP_Machine>:3333/internal/uploads/php-reverse-shell.phtml` di browser. Setelah payload dijalankan, netcat berhasil terkoneksi dengan server dan masuk sebagai **www-data**
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%2016.JPG)
 
 - Di directory **/home** terdapat home directory bill. Navigasi ke directory **/home/bill** dan disana terdapat file **user.txt** sebagai user flag
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%2017.JPG)
 
 - **Pertanyaan:** What common file type you'd want to upload to exploit the server is blocked? Try a couple to find out.
 ```sh
