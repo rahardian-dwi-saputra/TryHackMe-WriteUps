@@ -113,7 +113,7 @@ Ubuntu
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%202.JPG)
 
-- Dari hasil brute force gobuster diatas ditemukan halaman **/internal**. Kita bisa membuka di browser dengan url `http://<IP_Machine>:3333/internal` di browser. Setelah dibuka halaman tersebut sebuah form untuk upload file
+- Dari hasil brute force gobuster diatas ditemukan halaman **/internal**. Kita bisa membuka di browser dengan url `http://<IP_Machine>:3333/internal` di browser. Setelah dibuka, halaman tersebut berisi form untuk upload file
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%203.JPG)
 
