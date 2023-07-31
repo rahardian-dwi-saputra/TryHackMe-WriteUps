@@ -144,6 +144,14 @@ Ubuntu
 
 - Pindah ke tab Payloads, bikin payload dengan type Simple list dan berisi daftar sebagai berikut
 
+```sh
+.php
+.php3
+.php4
+.php5
+.phtml
+```
+
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%209.JPG)
 
 - Scroll ke bawah, pada bagian Payload Encoding hilangkan centang pada opsi URL-encode
