@@ -47,7 +47,7 @@ ssh
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%205.JPG)
 
-- Unggah file **php-reverse-shell.php** yang sudah diedit ke halaman `http://<IP_Machine>/panel` dan tekan Upload. Setelah di submit ternyata muncul pesan bahwa extensi file tidak di izinkan
+- Unggah file **php-reverse-shell.php** yang sudah diedit ke halaman `http://<IP_Machine>/panel` dan tekan Upload. Setelah di upload ternyata muncul pesan bahwa extensi file tidak di izinkan
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/RootMe/assets/rm%205.JPG)
 
@@ -85,6 +85,7 @@ export TERM=xterm
 - File **user.txt** tidak ditemukan di home directory, jadi kita mencari di directory lain dengan perintah `find / -type f -name user.txt`. Ternyata file **user.txt** berada di path **/var/www/user.txt**
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/RootMe/assets/rm%2013.JPG)
+
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/RootMe/assets/rm%2014.JPG)
 
 - Buka file **user.txt** dengan perintah `cat <path>`
