@@ -127,7 +127,33 @@ hackerrules!
 ```
 
 ## Task 4 Capture the user flag
+- Akses SSH dengan menggunakan username james dengan perintah `ssh james@<IP Machine>` lalu masukkan password yang sudah ditemukan
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Agent%20Sudo/assets/as%2022.JPG)
+
+- Setelah berhasil login, ketik `ls` maka disana terdapat file **user_flag.txt** yang berisi user flag dan file gambar **Alien_autospy.jpg**. Baca file **user_flag.txt** dengan perintah `cat user_flag.txt` untuk mendapatkan user flag
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Agent%20Sudo/assets/as%2023.JPG)
+
+- Ketik perintah `pwd` untuk mengetahui posisi directory. Disini kita berada di directory **/home/james**
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Agent%20Sudo/assets/as%2024.JPG)
+
+- Copy file **Alien_autospy.jpg** yang berada di directory **/home/james** dari server ke local menggunakan tool scp dengan perintah `scp scp james@<IP Machine>:/home/james/Alien_autospy.jpg .`
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Agent%20Sudo/assets/as%2025.JPG)
+
+- Dari perintah diatas diperoleh file gambar **Alien_autospy.jpg** sebagai berikut
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Agent%20Sudo/assets/as%2026.JPG)
+
+- Kita bisa menggunakan Google untuk mencari informasi lebih lanjut
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Agent%20Sudo/assets/as%2027.JPG)
+
+- Dari hasil googling kita memperoleh informasi sebagai berikut
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Agent%20Sudo/assets/as%2028.JPG)
 
 - **Pertanyaan:** What is the user flag?
 ```sh
