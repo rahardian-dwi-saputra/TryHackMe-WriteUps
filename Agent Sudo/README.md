@@ -166,7 +166,25 @@ Roswell alien autopsy
 ```
 
 ## Task 5 Privilege escalation 
+- Gunakan perintah `sudo -l` untuk melihat perintah yang bisa dijalankan tanpa akses root. Disini diperoleh keterangan `(ALL, !root) /bin/bash`
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Agent%20Sudo/assets/as%2029.JPG)
+
+- Cari tahu lewat google cara mengeksploitasi `(ALL, !root) /bin/bash`
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Agent%20Sudo/assets/as%2030.JPG)
+
+- Dari sumber https://www.exploit-db.com/exploits/47502 diketahui cara untuk mengakses user root dengan perintah sebagai berikut
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Agent%20Sudo/assets/as%2031.JPG)
+
+- Jalankan perintah `sudo -u#-1 /bin/bash` maka kita berhasil masuk ke user root
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Agent%20Sudo/assets/as%2032.JPG)
+
+- Buka root flag yang berada di /root/root.txt dengan perintah `cat /root/root.txt`
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Agent%20Sudo/assets/as%2033.JPG)
 
 - **Pertanyaan:** CVE number for the escalation 
 ```sh
