@@ -71,33 +71,35 @@ user-agent
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Agent%20Sudo/assets/as%2013.JPG)
 
-- Gunakan tool zip2john untuk mengekstraksi hash dari file zip dengan perintah `zip2john <nama_file_zip> > <nama_file_hash>`
-
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Agent%20Sudo/assets/as%2014.JPG)
 
-- Crack hash yang berhasil diekstraksi menggunakan tool john the ripper dengan perintah `john <nama_file>`
+- Gunakan tool zip2john untuk mengekstraksi hash dari file zip dengan perintah `zip2john <nama_file_zip> > <nama_file_hash>`
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Agent%20Sudo/assets/as%2015.JPG)
 
-- Ekstrak file zip denggan tool 7z dengan perintah `7z e <nama_file>` lalu masukkan password yang sudah ditemukan
+- Crack hash yang berhasil diekstraksi menggunakan tool john the ripper dengan perintah `john <nama_file>`
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Agent%20Sudo/assets/as%2016.JPG)
 
-- Dari hasil ekstrak file **8702.zip** diperoleh file **To_agentR.txt**. Disini ditemukan password steganografi yang masih keadaan ter encode
+- Ekstrak file zip denggan tool 7z dengan perintah `7z e <nama_file>` lalu masukkan password yang sudah ditemukan
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Agent%20Sudo/assets/as%2017.JPG)
 
-- Password berhasil ditemukan setelah di decode menggunakan base64 menggunakan tool CyberChef
+- Dari hasil ekstrak file **8702.zip** diperoleh file **To_agentR.txt**. Disini ditemukan password steganografi yang masih keadaan ter encode
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Agent%20Sudo/assets/as%2018.JPG)
 
-- Ekstrak steganografi menggunakan tool steghide menggunakan perintah `steghide extract -sf <nama_file>`
+- Password berhasil ditemukan setelah di decode menggunakan base64 menggunakan tool CyberChef
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Agent%20Sudo/assets/as%2019.JPG)
 
-- Setelah proses ekstrak berhasil diperoleh file **message.txt**. Disini diperoleh nama user **james** dan **hackerrules!** sebagai password SSH   
+- Ekstrak steganografi menggunakan tool steghide menggunakan perintah `steghide extract -sf <nama_file>`
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Agent%20Sudo/assets/as%2020.JPG)
+
+- Setelah proses ekstrak berhasil diperoleh file **message.txt**. Disini diperoleh nama user **james** dan **hackerrules!** sebagai password SSH   
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Agent%20Sudo/assets/as%2021.JPG)
 
 - **Pertanyaan:** FTP password
 ```sh
