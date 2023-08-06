@@ -98,6 +98,19 @@ LFILE=/etc/shadow
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Redis/assets/res%2017.JPG)
 
+## Privilege Escalation
+- Gunakan perintah `sudo -l` untuk melihat perintah yang bisa dijalankan tanpa akses root
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Redis/assets/res%2018.JPG)
+
+- Dari hasil perintah diatas, kita bisa masuk ke user root hanya dengan perintah `sudo su`
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Redis/assets/res%2019.JPG)
+
+- Buka root flag yang berada di /root/root.txt dengan perintah `cat /root/root.txt`
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Redis/assets/res%2020.JPG)
+
 ## Pertanyaan dan Jawaban:
 
 - **Pertanyaan:** Scan the machine, how many ports are open?
