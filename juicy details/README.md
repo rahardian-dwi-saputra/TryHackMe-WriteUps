@@ -95,3 +95,82 @@ cat vsftpd.log
 ```sh
 /ftp
 ```
+
+## Task 3 Stolen data
+- **Pertanyaan:** What section of the website did the attacker use to scrape user email addresses?
+- Buka kembali file **access.log**
+```sh
+cat access.log
+```
+- Setelah attacker membuka halaman product review, dia membuka halaman whoami untuk melihat detail user
+- **Jawaban**
+```sh
+product review
+```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/juicy%20details/assets/jd%2011.JPG)
+
+- **Pertanyaan:** Was their brute-force attack successful? If so, what is the timestamp of the successful login? (Yay/Nay, 11/Apr/2021:09:xx:xx +0000)
+- Gunakan grep untuk memfilter file **access.log**
+```sh
+cat access.log | grep Hydra | grep 200
+```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/juicy%20details/assets/jd%2012.JPG)
+
+- Attacker berhasil login pada tanggal 11 April 2021 pukul 09:16
+- **Jawaban**
+```sh
+Yay, 11/Apr/2021:09:16:31 +0000
+```
+
+- **Pertanyaan:** What user information was the attacker able to retrieve from the endpoint vulnerable to SQL injection?
+- Attacker biasanya mencari username dan password melalui serangan SQL injection sehingga kita bisa memanfaatkan filter username atau password pada file **access.log**
+- Disini kita berhasil menggunakan filter password pada file **access.log**
+```sh
+cat access.log | grep password
+```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/juicy%20details/assets/jd%2013.JPG)
+
+- **Jawaban**
+```sh
+email, password
+```
+
+- **Pertanyaan:** What files did they try to download from the vulnerable endpoint? (endpoint from the previous task, question #5)
+- Buka file **vsftpd.log** lalu scroll kebawah
+```sh
+cat vsftpd.log
+```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/juicy%20details/assets/jd%2014.JPG)
+
+- **Jawaban**
+```sh
+coupons_2013.md.bak,www-data.bak
+```
+
+- **Pertanyaan:** What service and account name were used to retrieve files from the previous question? (service, username)
+- Di file **vsftpd.log** terlihat bahwa, Attacker mengakses FTP menggunakan username **anonymous**
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/juicy%20details/assets/jd%2015.JPG)
+
+- **Jawaban**
+```sh
+ftp, anonymous
+```
+
+- **Pertanyaan:** What service and username were used to gain shell access to the server? (service, username)
+- Buka file **auth.log** di terminal dengan perintah sebagai berikut
+```sh
+cat auth.log
+```
+- Disini terlihat bahwa attacker berusaha mengakses SSH dengan username **www-data**
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/juicy%20details/assets/jd%2016.JPG)
+
+- **Jawaban**
+```sh
+ssh, www-data
+```
