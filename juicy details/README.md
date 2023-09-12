@@ -103,12 +103,13 @@ cat vsftpd.log
 cat access.log
 ```
 - Setelah attacker membuka halaman product review, dia membuka halaman whoami untuk melihat detail user
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/juicy%20details/assets/jd%2011.JPG)
+
 - **Jawaban**
 ```sh
 product review
 ```
-
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/juicy%20details/assets/jd%2011.JPG)
 
 - **Pertanyaan:** Was their brute-force attack successful? If so, what is the timestamp of the successful login? (Yay/Nay, 11/Apr/2021:09:xx:xx +0000)
 - Gunakan grep untuk memfilter file **access.log**
