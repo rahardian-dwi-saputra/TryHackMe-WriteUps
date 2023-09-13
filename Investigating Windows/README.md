@@ -163,7 +163,7 @@ Never
 - **Pertanyaan:** During the compromise, at what time did Windows first assign special privileges to a new logon?
 - Klik Start kemudian pilih Event Viewer
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%206.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%206.png)
 
 - Kemudian klik Create Custom View
 
@@ -210,3 +210,53 @@ Never
 - Buka file **mim-out**
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2030.JPG)
+
+- **Jawaban**
+```sh
+mimikatz
+```
+
+- **Pertanyaan:** What was the attackers external control and command servers IP?
+- Buka File Explorer dan pergi ke path **C:\ > Windows > System32 > drivers > etc**
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2031.JPG)
+
+- Double klik file **hosts** kemudian pilih Notepad dan tekan OK
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2032.JPG)
+
+- Di file ini, kita bisa menemukan domain google.com yang seharusnya tidak perlu ditambahkan karena host bisa mengaksesnya langsung lewat internet. Bisa jadi ini cara attacker menyamarkan server mereka lewat
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2033.JPG)
+
+- Kemudian kita coba lakukan ping ke google.com di Command Prompt. Ternyata langsung diarahkan ke IP yang terdapat di file hosts
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2034.JPG)
+
+- **Jawaban**
+```sh
+76.32.97.132
+```
+
+- **Pertanyaan:** What was the extension name of the shell uploaded via the servers website?
+- Buka File Explorer dan buka **Local Disk (C:)**. Disini terdapat satu folder yang mencurigakan yaitu **inetpub** yang biasanya tidak terdapat di directory C:
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2035.JPG)
+
+- Setelah dibuka terdapat satu folder yaitu **wwwroot**
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2036.JPG)
+
+- Didalam folder **wwwroot** terdapat beberapa file berekstensi .jsp
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2037.JPG)
+
+- **Jawaban**
+```sh
+.jsp
+```
+
+- **Pertanyaan:** What was the last port the attacker opened?
+- Klik Start dan Search 'firewall'
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2038.JPG)
