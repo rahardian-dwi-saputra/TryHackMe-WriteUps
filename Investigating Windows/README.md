@@ -149,3 +149,64 @@ net user Jenny
 ```sh
 Never
 ```
+
+- **Pertanyaan:** At what date did the compromise take place?
+- Buka File Explorer dan buka Local Disk (C:) kemudian perhatikan **Data modified** di masing-masing folder. Tanggal yang muncul terbanyak adalah jawabannya
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2020.JPG)
+
+- **Jawaban**
+```sh
+03/02/2019
+```
+
+- **Pertanyaan:** During the compromise, at what time did Windows first assign special privileges to a new logon?
+- Klik Start kemudian pilih Event Viewer
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%206.jpg)
+
+- Kemudian klik Create Custom View
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2021.JPG)
+
+- Kemudian pada Field Logged pilih Custom range ...
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2022.JPG)
+
+- Kemudian pada field From dan To pilih Events On
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2023.JPG)
+
+- Dari pertanyaan sebelumnya kita tahu bahwa serangan terjadi di tanggal 2 Maret 2019, jadi kita bisa memasukkan tanggal tersebut. Kemudian dari pertanyaan terakhir kita tahu pukul berapa berapa serangan itu terjadi, jadi kita bisa menggunakan perkiraan waktu pukul 4:00 PM hingga 4:30 PM lalu tekan OK
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2024.JPG)
+
+- Pada Event Logs pilih **Windows Logs > Security**
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2025.JPG)
+
+- Jika sudah tekan OK
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2026.JPG)
+
+- Kemudian muncul pop up untuk memberi nama view, tekan OK
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2027.JPG)
+
+- Cari task dengan kategori **Security Group Management**
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2028.JPG)
+
+- **Jawaban**
+```sh
+03/02/2019 4:04:47 PM
+```
+
+- **Pertanyaan:** What tool was used to get Windows passwords?
+- Buka File Explorer lalu buka **Local Disk (C:) > TMP**
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2029.JPG)
+
+- Buka file **mim-out**
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2030.JPG)
