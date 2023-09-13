@@ -163,11 +163,11 @@ Never
 - **Pertanyaan:** During the compromise, at what time did Windows first assign special privileges to a new logon?
 - Klik Start kemudian pilih Event Viewer
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%206.jpg)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%206.JPG)
 
 - Kemudian klik Create Custom View
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2021.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2021.jpg)
 
 - Kemudian pada Field Logged pilih Custom range ...
 
