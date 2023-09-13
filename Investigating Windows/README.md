@@ -260,3 +260,38 @@ mimikatz
 - Klik Start dan Search 'firewall'
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2038.JPG)
+
+- Pilih **Inbound Rules** kemudian tekan tanda panah pada **Filter by Group**
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2039.jpg)
+
+- Kemudian pilih **Rules Without a Group** yang berada di baris paling bawah
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2040.jpg)
+
+- Kemudian double klik **Allow outside connections for development**
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2041.jpg)
+
+- Maka akan muncul pop up seperti gambar dibawah ini
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2042.JPG)
+
+- Setelah itu pindah ke tab **Protocols and Ports**
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2043.JPG)
+
+- **Jawaban**
+```sh
+1337
+```
+
+- **Pertanyaan:** Check for DNS poisoning, what site was targeted?
+- Di file **hosts** dari pertanyaan sebelumnya sudah cukup jelas
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2044.jpg)
+
+- **Jawaban**
+```sh
+google.com
+```
