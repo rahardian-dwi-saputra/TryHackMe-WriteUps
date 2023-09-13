@@ -58,12 +58,11 @@ Administrator
 
 - **Pertanyaan:** When did John log onto the system last?
 - Buka Command Prompt (cmd) dan ketik perintah dibawah ini
-
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%209.png)
-
 ```sh
 net user John
 ```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%209.png)
 
 - **Jawaban**
 ```sh
@@ -87,7 +86,7 @@ net user John
 - **Pertanyaan:** What two accounts had administrative privileges (other than the Administrator user)?
 - Klik Start dan pilih Windows PowerShell
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2012.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2012.jpg)
 
 - Lalu ketikkan perintah berikut
 ```sh
@@ -122,7 +121,7 @@ Clean file system
 
 - Kemudian pindah ke **Actions**
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2017.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2017.jpg)
 
 - **Jawaban**
 ```sh
@@ -131,7 +130,7 @@ nc.ps1
 
 - **Pertanyaan:** What port did this file listen locally for?
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2018.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2018.jpg)
 
 - **Jawaban**
 ```sh
@@ -144,7 +143,7 @@ nc.ps1
 net user Jenny
 ```
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2019.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2019.jpg)
 
 - **Jawaban**
 ```sh
