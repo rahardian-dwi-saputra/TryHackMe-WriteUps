@@ -263,15 +263,15 @@ mimikatz
 
 - Pilih **Inbound Rules** kemudian tekan tanda panah pada **Filter by Group**
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2039.jpg)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2039.JPG)
 
 - Kemudian pilih **Rules Without a Group** yang berada di baris paling bawah
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2040.jpg)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2040.JPG)
 
 - Kemudian double klik **Allow outside connections for development**
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2041.jpg)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Investigating%20Windows/assets/iw%2041.JPG)
 
 - Maka akan muncul pop up seperti gambar dibawah ini
 
