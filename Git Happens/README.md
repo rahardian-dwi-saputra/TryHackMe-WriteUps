@@ -25,7 +25,7 @@ gobuster dir -u http://<IP_Machine> -w /usr/share/wordlists/dirb/common.txt
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Git%20Happens/assets/gh%204.JPG)
 
-- Kita bisa memanfaatkan GitTools untuk menyalin repository tersebut ke local. Untuk melakukan instalasi cukup jalankan perintah berikut ini
+- Kita bisa memanfaatkan GitTools ( https://github.com/internetwache/GitTools ) untuk menyalin repository tersebut ke local. Untuk melakukan instalasi cukup jalankan perintah berikut ini
 ```sh
 git clone https://github.com/internetwache/GitTools.git
 ```
@@ -59,7 +59,7 @@ git log
 
 - Tekan enter untuk menampilkan log berikutnya. Di log selanjutnya terdapat commit kapan halaman login dibuat. Halaman login dibuat pada tanggal 23 Juli 2020. Copy kode hash pada bagian commit untuk menampilkan detail log nya 
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Git%20Happens/assets/gh%2010.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Git%20Happens/assets/gh%2010.jpg)
 
 - Tampilkan detail lognya dengan git
 ```sh
@@ -70,7 +70,7 @@ git show 395e087334d613d5e423cdf8f7be27196a360459
 
 - Tekan enter untuk menampilkan log selanjutnya. Pada bagian paling bawah ditemukan username dan password
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Git%20Happens/assets/gh%2012.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Git%20Happens/assets/gh%2012.jpg)
 
 - **Pertanyaan:** Find the Super Secret Password
 - **Jawaban:**
