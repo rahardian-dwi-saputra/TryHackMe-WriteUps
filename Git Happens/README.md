@@ -1,6 +1,6 @@
 # Git Happens
-Tryhackme challenge: https://tryhackme.com/room/githappens
-IP Machine: 10.10.19.3
+- Tryhackme challenge: https://tryhackme.com/room/githappens
+- IP Machine: 10.10.19.3
 
 ## Task 1 Capture the Flag
 - Scanning port menggunakan nmap
