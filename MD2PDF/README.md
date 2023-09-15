@@ -8,7 +8,11 @@
 nmap -sC <IP_Machine>
 ```
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/MD2PDF/assets/md%201.JPG)
+
 - Port 80 (http) terbuka, sekarang kita coba akses halaman web lewat browser dengan url `http://<IP_Machine>`
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/MD2PDF/assets/md%202.JPG)
 
 
 - MD2PDF adalah singkatan dari [Markdown2PDF](https://github.com/realdennis/md2pdf). Halaman tersebut berfungsi mengubah markup HTML ke format PDF. Hal ini berpotensi untuk melakukan serangan XSS dan SSRF (Server Side Request Forgery).
@@ -17,8 +21,11 @@ nmap -sC <IP_Machine>
 gobuster dir -u http://<IP_Machine> -w /usr/share/wordlists/dirb/common.txt
 ```
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/MD2PDF/assets/md%203.JPG)
+
 - Ditemukan halaman **/admin** dari report gobuster. Sekarang kita buka halaman tersebut di browser dengan url `http://<IP_Machine>/admin`. Ternyata halaman tersebut hanya bisa diakses secara internal lewat localhost dan port 5000
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/MD2PDF/assets/md%204.JPG)
 
 - Sekarang kita injekkan iframe ke markup PDF untuk menampilkan isi halaman **/admin**
 ```sh
@@ -26,12 +33,11 @@ gobuster dir -u http://<IP_Machine> -w /usr/share/wordlists/dirb/common.txt
 </iframe>
 ```
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/MD2PDF/assets/md%205.JPG)
+
 - Tekan tombol Convert to PDF
 
-
-
-
-
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/MD2PDF/assets/md%206.JPG)
 
 **Pertanyaan:** What is the flag?
 
