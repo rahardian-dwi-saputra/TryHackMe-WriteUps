@@ -1,6 +1,9 @@
 # Investigating Windows
 Tryhackme room: https://tryhackme.com/room/investigatingwindows
 
+## Studi Kasus
+Mesin windows telah diretas, tugas Anda adalah menyelidiki mesin windows ini dan menemukan petunjuk tentang apa yang mungkin dilakukan oleh peretas.
+
 ## Task 1 Investigating Windows
 - Gunakan tool remmina untuk menghubungkan Kali Linux ke Windows
 - Gunakan perintah dibawah ini untuk menginstall aplikasi remmina di Kali Linux
