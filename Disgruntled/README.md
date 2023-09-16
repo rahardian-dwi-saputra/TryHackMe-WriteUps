@@ -2,6 +2,9 @@
 - TryHackMe Challenge: https://tryhackme.com/room/disgruntled
 - IP Machine: 10.10.166.127
 
+## Studi Kasus
+Kami tidak yakin apakah Anda pernah melihat beritanya, tetapi seorang karyawan dari departemen IT di salah satu klien kami (CyberT) telah ditangkap oleh polisi. Orang itu telah menjalankan operasi phishing yang sukses sebagai pekerjaan sampingan. Pihak CyberT ingin kami memeriksa apakah orang ini telah melakukan sesuatu yang berbahaya terhadap asetnya.
+
 ## Task 1 Introduction
 - Akses machine dengan SSH kemudian masukkan password sesuai petunjuk soal
 ```sh
