@@ -1,6 +1,12 @@
 # Juicy Details
 Tryhackme room: https://tryhackme.com/room/juicydetails
 
+## Studi Kasus
+Anda dipekerjakan sebagai Analis SOC di salah satu Toko Jus terbesar di dunia dan seorang penyerang telah memasuki jaringan Anda. Tugas Anda adalah:
+- Cari tahu teknik dan alat apa yang digunakan oleh penyerang
+- Endpoint mana yang memiliki kerentanan
+- Data sensitif apa yang diakses dan dicuri dari sistem
+
 ## Task 1 Introduction
 - Download task file (**logs.zip**)
 - Ekstrak file **logs.zip** dengan tool unzip
