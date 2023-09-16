@@ -102,7 +102,7 @@ spf1 include:spf.protection.outlook.com -all
 
 - Kemudian tekan tombol **DMARC Lookup**
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/The%20Greenholt%20Phish/assets/tgh%2014.jpg)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/The%20Greenholt%20Phish/assets/tgh%2014.png)
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/The%20Greenholt%20Phish/assets/tgh%2015.JPG)
 
