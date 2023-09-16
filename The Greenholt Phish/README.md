@@ -1,6 +1,9 @@
 # The Greenholt Phish
 - TryHackMe Challenge: https://tryhackme.com/room/phishingemails5fgjlzxc
 
+## Studi Kasus
+Seorang Sales Executive di Greenholt PLC menerima email yang tidak terduga dari seorang customer. Dia mengklaim bahwa customer tidak pernah menggunakan salam umum seperti "Selamat siang" dan tidak mengharapkan sejumlah uang ditransfer ke rekeningnya. Email tersebut juga berisi lampiran yang tidak pernah dia minta. Dia meneruskan email tersebut ke bagian SOC (Security Operations Center) untuk penyelidikan lebih lanjut.
+
 ## Task 1 Challenge
 - Gunakan Split View untuk mengakses machine
 
@@ -89,4 +92,86 @@ Hostwinds LLC
 - **Jawaban:**
 ```sh
 spf1 include:spf.protection.outlook.com -all
+```
+
+- **Pertanyaan:** What is the DMARC record for the Return-Path domain?
+- Domain-based Message Authentication Reporting and Conformance (DMARC) adalah metode otentikasi pesan email
+- Klik tanda panah kemudian pilih **DMARC Lookup**
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/The%20Greenholt%20Phish/assets/tgh%2013.jpg)
+
+- Kemudian tekan tombol **DMARC Lookup**
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/The%20Greenholt%20Phish/assets/tgh%2014.jpg)
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/The%20Greenholt%20Phish/assets/tgh%2015.JPG)
+
+- **v=DMARC1** → Harus menggunakan huruf kapital semua, dan ini bukan opsional.
+- **p=quarantine** → Jika pemeriksaan gagal, maka email akan dikirim ke folder spam (Kebijakan DMARC).
+- **fo** → Menentukan opsi pelaporan kegagalan/forensik.
+- **fo=1** → Buat laporan kegagalan/forensik DMARC jika SPF atau DKIM menghasilkan hasil selain lintasan yang selaras.
+
+- **Jawaban:**
+```sh
+DMARC1; p=quarantine; fo=1
+```
+
+- **Pertanyaan:** What is the name of the attachment?
+- Buka kembali email dari task sebelumnya
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/The%20Greenholt%20Phish/assets/tgh%2016.jpg)
+
+- **Jawaban:**
+```sh
+SWT_#09674321____PDF__.CAB
+```
+
+- **Pertanyaan:** What is the SHA256 hash of the file attachment?
+- Tekan tombol Save untuk menyimpan attachment file ke local
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/The%20Greenholt%20Phish/assets/tgh%2017.png)
+
+- Lalu tekan tombol **Save** untuk menyimpan
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/The%20Greenholt%20Phish/assets/tgh%2018.jpg)
+
+- Buka terminal
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/The%20Greenholt%20Phish/assets/tgh%2019.jpg)
+
+- Gunakan tool `sha256sum` untuk mengecek kode hash file
+```sh
+sha256sum SWT_#09674321____PDF__.CAB
+```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/The%20Greenholt%20Phish/assets/tgh%2020.JPG)
+
+- **Jawaban:**
+```sh
+2e91c533615a9bb8929ac4bb76707b2444597ce063d84a4b33525e25074fff3f
+```
+
+- **Pertanyaan:** What is the attachments file size? (Don't forget to add "KB" to your answer, NUM KB)
+- Ukuran file yang dimaksud bukan ukuran file yang tertera di local
+- Copy hash file dari pertanyaan sebelumnya
+- Buka website https://www.virustotal.com/gui/home/search kemudian paste hash file di field pencarian
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/The%20Greenholt%20Phish/assets/tgh%2021.jpg)
+
+- Tekan enter kemudian pindah ke tab **Details**, pada **Basic Properties** terdapat informasi **File size** yang merupakan ukuran file sebenarnya
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/The%20Greenholt%20Phish/assets/tgh%2022.JPG)
+
+- **Jawaban:**
+```sh
+400.26 KB
+```
+
+- **Pertanyaan:** What is the actual file extension of the attachment?
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/The%20Greenholt%20Phish/assets/tgh%2023.jpg)
+
+- **Jawaban:**
+```sh
+rar
 ```
