@@ -4,6 +4,8 @@
 ## Studi Kasus
 Seorang Sales Executive di Greenholt PLC menerima email yang tidak terduga dari seorang customer. Dia mengklaim bahwa customer tidak pernah menggunakan salam umum seperti "Selamat siang" dan tidak mengharapkan sejumlah uang ditransfer ke rekeningnya. Email tersebut juga berisi lampiran yang tidak pernah dia minta. Dia meneruskan email tersebut ke bagian SOC (Security Operations Center) untuk penyelidikan lebih lanjut.
 
+Selidiki sampel email tersebut untuk menentukan apakah itu email yang sah.
+
 ## Task 1 Challenge
 - Gunakan Split View untuk mengakses machine
 
