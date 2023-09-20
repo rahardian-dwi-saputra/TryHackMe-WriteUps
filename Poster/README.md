@@ -163,7 +163,7 @@ auxiliary/admin/postgres/postgres_readfile
 ```
 
 - **Pertanyaan:** What is the full path of the module that allows arbitrary command execution with the proper user credentials (starting with exploit)?
-- Cari hasil pencarian di pertanyaan sebelumnya, kita juga menemukan modul PostgreSQL COPY FROM PROGRAM Command Execution di nomor 6
+- Dari hasil pencarian di pertanyaan sebelumnya, kita juga menemukan modul PostgreSQL COPY FROM PROGRAM Command Execution di nomor 6
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Poster/assets/p%2021.JPG)
 
@@ -192,7 +192,7 @@ set lhost <IP_tun0>
 
 - Buat shell menjadi terminal interaktif dengan python3
 ```sh
-python3 -c 'import pty; pty.spawn("/bin/bash")'
+python3 -c "import pty; pty.spawn('/bin/bash')"
 ```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Poster/assets/p%2025.JPG)
