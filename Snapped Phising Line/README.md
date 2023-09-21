@@ -135,17 +135,31 @@ ba3c15267393419eb08c7b2652b8b6b39b406ef300ae8a18fee4d16b19ac9686
 ```
 
 - **Pertanyaan:** When was the phishing domain that was used to host the phishing kit archive first registered? (format: YYYY-MM-DD)
+- Buka website [ThreatBook CTI](https://threatbook.io/) dan ketikkan domain di field pencarian lalu tekan tombol search
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2023.jpg)
+
+- Setelah hasil pencarian muncul pindah ke tab Whois
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2024.jpg)
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2025.JPG)
 
 - **Jawaban:**
 ```sh
-x
+2020-06-25
 ```
 
 - **Pertanyaan:** What was the email address of the user who submitted their password twice?
+- Buka halaman http://kennaroads.buzz/data/Update365/ klik file **log.txt** untuk membuka
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2026.jpg)
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2027.JPG)
 
 - **Jawaban:**
 ```sh
-x
+michael.ascot@swiftspend.finance
 ```
 
 - **Pertanyaan:** What was the email address used by the adversary to collect compromised credentials?
