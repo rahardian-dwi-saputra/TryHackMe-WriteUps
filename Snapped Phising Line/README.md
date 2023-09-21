@@ -13,14 +13,20 @@ Sebagai personil departemen IT SwiftSpend Financial, salah satu tanggung jawab A
 ## Task 1 Challenge Scenario
 - Gunakan Split View untuk mengakses machine
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%201.jpg)
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%202.JPG)
 
 - **Pertanyaan:** Who is the individual who received an email attachment containing a PDF?
 - Buka sample email di folder **phis-emails**
 
-
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%203.jpg)
 
 - Double klik file untuk membuka. Anda bisa mencoba membuka satu-persatu untuk menemukan file email yang mengandung lampiran file berekstensi PDF
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%204.jpg)
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%205.jpg)
 
 - **Jawaban:**
 ```sh
@@ -29,7 +35,7 @@ William McClean
 
 - **Pertanyaan:** What email address was used by the adversary to send the phishing emails?
 
-
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%206.jpg)
 
 - **Jawaban:**
 ```sh
@@ -39,19 +45,35 @@ Accounts.Payable@groupmarketingonline.icu
 - **Pertanyaan:** What is the redirection URL to the phishing page for the individual Zoe Duncan? (defanged format)
 - Buka file email Zoe Duncan
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%207.jpg)
+
 - Tekan tombol **Save** untuk mendownload lampiran file
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%208.jpg)
 
 - Simpan lampiran file di **Desktop > phis-emails** lalu tekan tombol save
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%209.jpg)
+
 - Buka terminal
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2010.jpg)
 
 - Buka lampiran file yang tersimpan dengan perintah `cat <nama_file>`
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2011.jpg)
+
 - Copy URL redirect yang ada di file tersebut
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2012.jpg)
 
 - Buka tool [Cyber Chef](https://gchq.github.io/CyberChef/) kemudian search 'defang'
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2013.jpg)
+
 - Paste URL tadi di field Input untuk mengkonversi ke format defang 
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2014.JPG)
 
 - **Jawaban:**
 ```sh
@@ -61,10 +83,15 @@ hxxp[://]kennaroads[.]buzz/data/Update365/office365/40e7baa2f826a57fcf04e5202526
 - **Pertanyaan:** What is the URL to the .zip archive of the phishing kit? (defanged format)
 - Buka url `http://kennaroads.buzz/data` dengan Firefox
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2015.JPG)
+
 - Klik kanan pada file **Update365.zip** kemudian pilih Copy Link
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2016.jpg)
 
 - Kemudian paste url tersebut tool [Cyber Chef](https://gchq.github.io/CyberChef/) dari pertanyaan sebelumnya
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2017.JPG)
 
 - **Jawaban:**
 ```sh
@@ -74,10 +101,14 @@ hxxp[://]kennaroads[.]buzz/data/Update365[.]zip
 - **Pertanyaan:** What is the SHA256 hash of the phishing kit archive?
 - Double klik file **Update365.zip** untuk mendownload
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2018.JPG)
+
 - Buka terminal lalu arahkan ke directory **Downloads** dan cek menggunakan tool sha256sum
 ```sh
 sha256sum <nama_file>
 ```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2019.JPG)
 
 - **Jawaban:**
 ```sh
@@ -88,9 +119,15 @@ ba3c15267393419eb08c7b2652b8b6b39b406ef300ae8a18fee4d16b19ac9686
 - Copy hash dari pertanyaan sebelumnya
 - Buka website Virus Total: https://www.virustotal.com/gui/home/search lalu paste hash di field pencarian dan tekan enter
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2020.jpg)
+
 - Setelah pindah ke tab **Details**
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2021.JPG)
+
 - Pada bagian history terdapat informasi kapan file ini disubmit pertama kali
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2022.JPG)
 
 - **Jawaban:**
 ```sh
