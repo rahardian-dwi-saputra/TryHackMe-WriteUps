@@ -61,11 +61,11 @@ Accounts.Payable@groupmarketingonline.icu
 
 - Buka lampiran file yang tersimpan dengan perintah `cat <nama_file>`
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2011.jpg)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2011.JPG)
 
 - Copy URL redirect yang ada di file tersebut
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2012.jpg)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2012.JPG)
 
 - Buka tool [Cyber Chef](https://gchq.github.io/CyberChef/) kemudian search 'defang'
 
