@@ -6,8 +6,14 @@ Note:
 
 ## Topik
 
+### Burp Suite
+- Intercept On: [Agent Sudo](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/tree/main/Agent%20Sudo)
+
 ### Gobuster
-- Enumerate web directory: [Basic Pentesting](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/tree/main/Basic%20Pentesting) [Git Happens](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/tree/main/Git%20Happens) [M2PDF](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/tree/main/MD2PDF)
+- Enumerate web directory: [Basic Pentesting](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/tree/main/Basic%20Pentesting), [Git Happens](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/tree/main/Git%20Happens), [M2PDF](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/tree/main/MD2PDF)
+
+### Hydra
+- Brute force FTP login: [Agent Sudo](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/tree/main/Agent%20Sudo)
 
 ### Metasploit
 - Exploit eternal blue: [Blue](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/tree/main/Blue)
