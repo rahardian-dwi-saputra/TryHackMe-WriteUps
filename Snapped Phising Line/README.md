@@ -163,22 +163,75 @@ michael.ascot@swiftspend.finance
 ```
 
 - **Pertanyaan:** What was the email address used by the adversary to collect compromised credentials?
+- Di pertanyaan sebelumnya kita sudah mendownload file **Update365.zip** jadi sekarang kita tinggal mengekstraknya saja
+- Buka terminal dan ekstrak file **Update365.zip**
+```sh
+cd Downloads
+unzip Update365.zip
+```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2028.JPG)
+
+- Setelah itu kita cari semua file yang mengandung email dengan tool grep
+```sh
+grep -rEi "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}" Update365
+```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2029.JPG)
+
+- Disini kita menemukan file **submit.php** yang berada file folder **Update365/office365/Validation**
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2030.JPG)
+
+- Sekarang kita coba buka file tersebut di File Explorer
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2031.png)
+
+- Klik kanan file tersebut kemudian pilih Open With Text Editor
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2032.jpg)
+
+- Setelah ditelusuri ternyata email tersebut akan menerima pesan yang berisi email dan password dari hasil phising
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2033.JPG)
 
 - **Jawaban:**
 ```sh
-x
+m3npat@yandex.com
 ```
 
 - **Pertanyaan:** The adversary used other email addresses in the obtained phishing kit. What is the email address that ends in "@gmail.com"?
+- Jawaban sudah ada dipertanyaan sebelumnya
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2034.JPG)
 
 - **Jawaban:**
 ```sh
-x
+jamestanner2299@gmail.com
 ```
 
 - **Pertanyaan:** What is the hidden flag?
+- Buka halaman http://kennaroads.buzz/data/Update365/office365/flag.txt di Firefox kemudian copy secret tersebut
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2035.JPG)
+
+- Buka tool [Cyber Chef](https://gchq.github.io/CyberChef/) kemudian drag opsi **From Base64** dan drop kolom Recipe
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2036.jpg)
+
+- Kemudian encode secret tersebut. Setelah itu copy hasil encode secret tersebut
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2037.JPG)
+
+- Hapus Recipe kemudian ketik **reverse** di field pencarian dan drag lalu drop di field Recipe
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2038.jpg)
+
+- Reverse hasil encode sebelumnya untuk mendapatkan flag
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Snapped%20Phising%20Line/assets/spl%2039.JPG)
 
 - **Jawaban:**
 ```sh
-x
+THM{pL4y_w1Th_tH3_URL}
 ```
