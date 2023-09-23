@@ -2,7 +2,7 @@
 - TryHackMe Challenge: https://tryhackme.com/room/catpictures2
 - IP Machine: 10.10.154.180
 
-# Nmap Report
+## Nmap Report
 - Baris perintah: `nmap -sV -sC -A <IP Machine>`
 ```sh
 ┌──(kali㉿kali)-[~]
