@@ -121,3 +121,160 @@ Gwangju, South Korea
 ```sh
 Jeungsimsa Temple
 ```
+
+## Task 4 Digging into DNS
+- Buka halaman web https://viewdns.info/
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2019.JPG)
+
+- **Pertanyaan:** What was RepublicOfKoffee.com's IP address as of October 2016?
+- Pada field **IP History** ketikkan nama domain lalu tekan tombol **GO**
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2020.JPG)
+
+- Scroll hingga paling bawah hingga menemukan timeline tahun 2016
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2021.JPG)
+
+- **Jawaban:**
+```sh
+173.248.188.152
+```
+
+- **Pertanyaan:** Based on the other domains hosted on the same IP address, what kind of hosting service can we safely assume our target uses?
+- Kembali ke halaman utama https://viewdns.info/ lalu pada field **Reverse IP Lookup** dan tekan tombol **GO**
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2022.JPG)
+
+- Diketerangan bagian atas tertulis shared hosting
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2023.JPG)
+
+- **Jawaban:**
+```sh
+shared
+```
+
+- **Pertanyaan:** How many times has the IP address changed in the history of the domain?
+- Dari hasil pencarian sebelumnya terdapat 4 waktu yaitu tahun 2020, 2019, 2018 dan 2017
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2024.JPG)
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2025.JPG)
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2026.JPG)
+
+- **Jawaban:**
+```sh
+Panama
+```
+
+## Task 5 Taking Off The Training Wheels
+- Domain: heat.net 
+
+- **Pertanyaan:** What is the second nameserver listed for the domain?
+- Buka halaman web https://lookup.icann.org/en lalu ketikkan nama domain dan tekan tombol **Lookup**
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2027.JPG)
+
+- Lihat informasi pada bagian **Domain Information**
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2028.JPG)
+
+- **Jawaban:**
+```sh
+NS2.HEAT.NET
+```
+
+- **Pertanyaan:** What IP address was the domain listed on as of December 2011?
+- Buka halaman web https://viewdns.info/ kemudian pada field **IP History** isikan nama
+domain dan klik tombol **GO**
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2029.JPG)
+
+- Lihat IP pada timeline bulan Desember tahun 2011
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2030.JPG)
+
+- **Jawaban:**
+```sh
+72.52.192.240
+```
+
+- **Pertanyaan:** Based on domains that share the same IP, what kind of hosting service is the domain owner using?
+- Kembali ke halaman utama https://viewdns.info/ lalu pada field **Reverse IP Lookup** dan tekan tombol **GO**
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2031.JPG)
+
+- Diketerangan bagian atas tertulis shared hosting
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2032.JPG)
+
+- **Jawaban:**
+```sh
+shared
+```
+
+- **Pertanyaan:** On what date did was the site first captured by the internet archive? (MM/DD/YY format)
+- Buka halaman web https://archive.org/web/ lalu ketikkan nama domain dan tekan tombol **Browse History**
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2033.JPG)
+
+- Disini tertulis terekam internet archive sejak tanggal 1 juni 1997
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2034.JPG)
+
+- **Jawaban:**
+```sh
+Panama
+```
+
+- **Pertanyaan:** What is the first sentence of the first body paragraph from the final capture of 2001?
+- Dari hasil pencarian sebelumnya, pilih timeline tahun 2001
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2035.JPG)
+
+- Record terakhir adalah tanggal 6 juli 2001, pilih tanggal tersebut dan klik link di tanggal tersebut
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2036.jpg)
+
+- Scroll ke bawah dan kita menemukan 1 postingan sebagai berikut
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2037.JPG)
+
+- **Jawaban:**
+```sh
+After years of great online gaming, it’s time to say good-bye.
+```
+
+- **Pertanyaan:** Using your search engine skills, what was the name of the company that was responsible for the original version of the site?
+- Karena web berisi tentang gaming, kita cari di google dengan kata pencarian `heat.net gaming`
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2038.JPG)
+
+- Dari hasil pencarian ditemukan SegaSoft
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2039.JPG)
+
+- **Jawaban:**
+```sh
+segasoft
+```
+
+- **Pertanyaan:** What does the first header on the site on the last capture of 2010 say?
+- Dari hasil pencarian sebelumnya, pilih timeline tahun 2010
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2040.JPG)
+
+- Record terakhir adalah tanggal 30 Desember 2010, pilih tanggal tersebut dan klik link di tanggal tersebut
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2041.jpg)
+
+- Disini tertulis judul postingan
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2042.JPG)
+
+- **Jawaban:**
+```sh
+Heat.net – Heating and Cooling
+```
