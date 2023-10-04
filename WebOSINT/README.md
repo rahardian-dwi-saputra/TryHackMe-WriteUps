@@ -166,7 +166,7 @@ shared
 
 - **Jawaban:**
 ```sh
-Panama
+4
 ```
 
 ## Task 5 Taking Off The Training Wheels
@@ -226,7 +226,7 @@ shared
 
 - **Jawaban:**
 ```sh
-Panama
+06/01/97
 ```
 
 - **Pertanyaan:** What is the first sentence of the first body paragraph from the final capture of 2001?
@@ -277,4 +277,108 @@ segasoft
 - **Jawaban:**
 ```sh
 Heat.net – Heating and Cooling
+```
+
+## Task 6 Taking A Peek Under The Hood Of A Website
+- URL: heat.net/36/need-to-hire-a-commercial-heating-contractor
+
+- **Pertanyaan:** How many internal links are in the text of the article?
+- Buka halaman web https://archive.org/web/ lalu ketikkan URL diatas dan tekan tombol **Browse History**
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2043.JPG)
+
+- Record terakhir adalah tanggal 12 Mei 2023, pilih tanggal tersebut dan klik link di halaman tersebut
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2044.jpg)
+
+- Internal link adalah link yang mengarah ke website yang sama. Disini kita berhasil mendapatkan 5 buah link
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2045.JPG)
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2046.JPG)
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2047.JPG)
+
+- **Jawaban:**
+```sh
+5
+```
+
+- **Pertanyaan:** How many external links are in the text of the article?
+- External link adalah link yang mengarah ke website yang berbeda. Dari hasil pencarian sebelumnya kita hanya menemukan 1 link
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2048.JPG)
+
+- **Jawaban:**
+```sh
+1
+```
+
+- **Pertanyaan:** Website in the article's only external link ( that isn't an ad)
+- Buka external link di tab baru dari pertanyaan sebelumnya
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2049.JPG)
+
+- **Jawaban:**
+```sh
+purchase.org
+```
+
+- **Pertanyaan:** Try to find the Google Analytics code linked to the site
+- Klik kanan pada halaman lalu pilih View Page Source
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2050.jpg)
+
+- Scroll kebawah, disini kita menemukan source code Google Analytics
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2051.JPG)
+
+- **Jawaban:**
+```sh
+UA-251372-24
+```
+
+- **Pertanyaan:** Is the the Google Analytics code in use on another website? Yay or nay
+- Buka halaman web https://www.nerdydata.com/ lalu ketikkan code google analytic diatas dan tekan enter
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2052.jpg)
+
+- Hasilnya tidak ada web manapun yang menggunakan code google analytic tersebut
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2053.JPG)
+
+- **Jawaban:**
+```sh
+Nay
+```
+
+- **Pertanyaan:** Does the link to this website have any obvious affiliate codes embedded with it? Yay or Nay
+- Tidak ditemukan code affiliasi di page source pada pertanyaan sebelumnya
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2054.JPG)
+
+- **Jawaban:**
+```sh
+Panama
+```
+
+## Task 7 Final Exam: Connect the Dots
+- **Pertanyaan:** Use the tools in Task 4 to confirm the link between the two sites. Try hard to figure it out without the hint.
+- Buka halaman web https://viewdns.info/ kemudian pada field **IP History** ketikkan nama domain lalu tekan tombol **GO**
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2055.JPG)
+
+- Disini tercantum ownernya adalah Liquid Web
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2056.JPG)
+
+- Jika kita cari lewat google, tipe perusahaannya adalah LLC
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2057.JPG)
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/WebOSINT/assets/wo%2058.JPG)
+
+- **Jawaban:**
+```sh
+Liquid Web, L.L.C
 ```
