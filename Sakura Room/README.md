@@ -217,3 +217,62 @@ http://deepv2w7p33xa4pwxzwi2ps4j62gfxpyp44ezjbmpttxz3owlsp4ljid.onion/show.php?m
 ```sh
 84:AF:EC:34:FC:F8
 ```
+
+## Task 6 HOMEBOUND
+- **Plotwish:** Berdasarkan tweet mereka, nampaknya penjahat dunia maya kita memang pulang ke rumah seperti yang mereka klaim. Akun Twitter mereka tampaknya memiliki banyak foto yang memungkinkan kami mengetahui rute pulang mereka. Jika kita mengikuti jejak rumah yang mereka tinggalkan, kita seharusnya bisa melacak pergerakan mereka dari satu lokasi ke lokasi berikutnya hingga ke tujuan akhirnya. Setelah kami dapat mengidentifikasi perhentian terakhir mereka, kami dapat mengidentifikasi ke organisasi penegak hukum mana kami harus meneruskan temuan kami.
+
+- **Pertanyaan:** What airport is closest to the location the attacker shared a photo from prior to getting on their flight?
+- Attacker telah memposting sebuah foto sebelum dia pulang
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Sakura%20Room/assets/sr%2037.JPG)
+
+- Download foto yang dibagikan di postingan tersebut. Kemudian buka website https://yandex.com/images dan klik icon camera untuk upload gambar
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Sakura%20Room/assets/sr%2038.JPG)
+
+- Kemudian seleksi pada bagian ini. Lalu tekan tombol done
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Sakura%20Room/assets/sr%2039.JPG)
+
+- Dari hasil penelusuran yang muncul, ternyata itu adalah menara Monumen Washington
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Sakura%20Room/assets/sr%2040.JPG)
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Sakura%20Room/assets/sr%2041.JPG)
+
+- Sekarang kita tahu bahwa foto tersebut diambil di bandara yang dekat dengan Monumen Washington. Sekarang kita bisa cari tahu bandara apa yang dekat dengan monumen tersebut lewat google
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Sakura%20Room/assets/sr%2042.JPG)
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Sakura%20Room/assets/sr%2043.JPG)
+
+- **Jawaban:**
+```sh
+DCA
+```
+
+- **Pertanyaan:** What airport did the attacker have their last layover in?
+- Attacker juga telah memposting dimana ia terakhir kali singgah
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Sakura%20Room/assets/sr%2044.JPG)
+
+- Download foto yang dibagikan di postingan tersebut. Sekarang kita gunakan pencarian gambar lewat google. Tekan icon camera pada field pencarian
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Sakura%20Room/assets/sr%2045.JPG)
+
+- Kemudian upload gambar yang sudah di download tadi
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Sakura%20Room/assets/sr%2046.JPG)
+
+- Disini muncul beberapa hasil pencarian. Kita bisa memilih satu per satu untuk menemukan informasi. Misalnya kita memilih informasi dari halaman web singleflyer yang muncul di pencarian
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Sakura%20Room/assets/sr%2047.JPG)
+
+- Di web ini tertulis code bandaranya adalah HND
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Sakura%20Room/assets/sr%2048.JPG)
+
+- **Jawaban:**
+```sh
+HND
+```
