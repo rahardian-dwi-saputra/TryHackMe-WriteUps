@@ -199,7 +199,7 @@ http://deepv2w7p33xa4pwxzwi2ps4j62gfxpyp44ezjbmpttxz3owlsp4ljid.onion/show.php?m
 - Buka halaman web https://wigle.net/ dan lakukan registerasi terlebih dahulu jika anda belum memiliki akunnya
 - Pilih View > Basic Search
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Sakura%20Room/assets/sr%2032.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Sakura%20Room/assets/sr%2032.jpg)
 
 - Ketikkan kata pencarian `dk1f-g` di bagian field SSD kemudian tekan tombol Query. Untuk menemukan hasil pencarian anda harus menggeser peta secara manual ke negara Jepang
 
