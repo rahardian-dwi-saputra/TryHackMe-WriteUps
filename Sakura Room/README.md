@@ -137,7 +137,7 @@ Ethereum
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Sakura%20Room/assets/sr%2023.JPG)
 
-- Disini kita berhasil menemukan riwayat transaksi pada tanggal 23 Januari 2023
+- Disini kita berhasil menemukan riwayat transaksi pada tanggal 23 Januari 2021
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Sakura%20Room/assets/sr%2024.JPG)
 
@@ -162,4 +162,58 @@ Ethermine
 - **Jawaban:**
 ```sh
 Tether
+```
+
+## Task 5 TAUNT
+- **Plotwish:** Seperti yang kami duga, penjahat dunia maya menyadari sepenuhnya bahwa kami mengumpulkan informasi tentang mereka setelah serangan mereka. Mereka bahkan dengan berani mengirimkan pesan ke OSINT Dojo di Twitter dan mengejek upaya kami. Akun Twitter yang mereka gunakan tampaknya menggunakan nama pengguna yang berbeda dari yang kami lacak sebelumnya, mungkin ada beberapa informasi tambahan yang dapat kami temukan untuk mendapatkan gambaran kemana tujuan mereka selanjutnya?
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Sakura%20Room/assets/sr%2029.png)
+
+- **Pertanyaan:** What is the attacker's current Twitter handle?
+- Di Task 3 kita berhasil menemukan akun twitter attacker. Yang kebetulan foto profilnya sama dengan tangkapan layar diatas
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Sakura%20Room/assets/sr%2013.JPG)
+
+- **Jawaban:**
+```sh
+SakuraLoverAiko
+```
+
+- **Pertanyaan:** What is the URL for the location where the attacker saved their WiFi  SSIDs and passwords?
+- Buka kembali halaman profil twitter attacker yang berhasil ditemukan di https://twitter.com/SakuraLoverAiko
+- Di halaman profil tersebut, attacker pernah memposting tweet tentang informasi di Dark Web. Tweet tersebut berisi md5sum untuk mengakses konten di Dark Web
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Sakura%20Room/assets/sr%2030.png)
+
+- Di petunjuk soal juga diperoleh tangkapan layar dari Dark Web di link https://raw.githubusercontent.com/OsintDojo/public/main/deeppaste.png
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Sakura%20Room/assets/sr%2031.png)
+
+- Dari 2 petunjuk diatas kita dapat menemukan URL dimana attacker menyimpan SSID dan password WiFi
+- **Jawaban:**
+```sh
+http://deepv2w7p33xa4pwxzwi2ps4j62gfxpyp44ezjbmpttxz3owlsp4ljid.onion/show.php?md5=b2b37b3c106eb3f86e2340a3050968e2
+```
+
+- **Pertanyaan:** What is the BSSID for the attacker's Home WiFi?
+- Buka halaman web https://wigle.net/ dan lakukan registerasi terlebih dahulu jika anda belum memiliki akunnya
+- Pilih View > Basic Search
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Sakura%20Room/assets/sr%2032.JPG)
+
+- Ketikkan kata pencarian `dk1f-g` di bagian field SSD kemudian tekan tombol Query. Untuk menemukan hasil pencarian anda harus menggeser peta secara manual ke negara Jepang
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Sakura%20Room/assets/sr%2033.JPG)
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Sakura%20Room/assets/sr%2034.JPG)
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Sakura%20Room/assets/sr%2035.JPG)
+
+- Disini kita berhasil menemukan BSSID dari WiFi yang digunakan oleh attacker
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Sakura%20Room/assets/sr%2036.JPG)
+
+- **Jawaban:**
+```sh
+84:AF:EC:34:FC:F8
 ```
