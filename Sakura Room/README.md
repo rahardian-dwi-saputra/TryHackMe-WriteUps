@@ -276,3 +276,28 @@ DCA
 ```sh
 HND
 ```
+
+- **Pertanyaan:** What lake can be seen in the map shared by the attacker as they were on their final flight home?
+- Attacker juga telah memposting sebuah peta yang dekat dengan rumahnya
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Sakura%20Room/assets/sr%2049.JPG)
+
+- Jika kita cocokkan dengan google maps. Peta ini mirip dengan peta Jepang, dimana disisi kiri terdapat sebuah pulau kemudian terdapat sebuah danau di tengahnya
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Sakura%20Room/assets/sr%2050.JPG)
+
+- Kita tinggal zoom peta tersebut untuk mengetahui nama danau
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Sakura%20Room/assets/sr%2051.JPG)
+
+- **Jawaban:**
+```sh
+lake Inawashiro
+```
+
+- **Pertanyaan:** What city does the attacker likely consider "home"?
+- Di task 5 pertanyaan terakhir, kita berhasil memvisualisasikan dimana lokasi SSID WiFi yang attacker gunakan dan juga dari hasil investigasi diatas menunjukkan bahwa attacker telah pulang ke rumahnya di Jepang. Jadi bisa disimpulkan bahwa lokasi SSID WiFi itu sendiri kemungkinan adalah rumahnya attacker 
+- **Jawaban:**
+```sh
+hirosaki
+```
