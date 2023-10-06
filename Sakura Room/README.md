@@ -167,7 +167,7 @@ Tether
 ## Task 5 TAUNT
 - **Plotwish:** Seperti yang kami duga, penjahat dunia maya menyadari sepenuhnya bahwa kami mengumpulkan informasi tentang mereka setelah serangan mereka. Mereka bahkan dengan berani mengirimkan pesan ke OSINT Dojo di Twitter dan mengejek upaya kami. Akun Twitter yang mereka gunakan tampaknya menggunakan nama pengguna yang berbeda dari yang kami lacak sebelumnya, mungkin ada beberapa informasi tambahan yang dapat kami temukan untuk mendapatkan gambaran kemana tujuan mereka selanjutnya?
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Sakura%20Room/assets/sr%2029.png)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Sakura%20Room/assets/sr%2030.png)
 
 - **Pertanyaan:** What is the attacker's current Twitter handle?
 - Di Task 3 kita berhasil menemukan akun twitter attacker. Yang kebetulan foto profilnya sama dengan tangkapan layar diatas
@@ -183,7 +183,7 @@ SakuraLoverAiko
 - Buka kembali halaman profil twitter attacker yang berhasil ditemukan di https://twitter.com/SakuraLoverAiko
 - Di halaman profil tersebut, attacker pernah memposting tweet tentang informasi di Dark Web. Tweet tersebut berisi md5sum untuk mengakses konten di Dark Web
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Sakura%20Room/assets/sr%2030.png)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Sakura%20Room/assets/sr%2029.JPG)
 
 - Di petunjuk soal juga diperoleh tangkapan layar dari Dark Web di link https://raw.githubusercontent.com/OsintDojo/public/main/deeppaste.png
 
