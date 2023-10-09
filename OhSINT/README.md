@@ -59,3 +59,52 @@ London
 ```sh
 UnileverWiFi
 ```
+
+- **Pertanyaan:** What is his personal email address?
+- Dari hasil pencarian google lainnya kita juga menemukan link yang mengarah ke repository github
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/OhSINT/assets/osh%2010.JPG)
+
+- Di repository github tersebut kita menemukan akun email dari user tersebut
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/OhSINT/assets/osh%2011.JPG)
+
+- **Jawaban:**
+```sh
+OWoodflint@gmail.com
+```
+
+- **Pertanyaan:** What site did you find his email address on?
+- Dari pertanyaan sebelumnnya kita berhasil menemukan akun email user tersebut di repository github
+- **Jawaban:**
+```sh
+github
+```
+
+- **Pertanyaan:** Where has he gone on holiday?
+- Dari hasil pencarian google lainnya kita juga menemukan link yang mengarah ke halaman wordpress
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/OhSINT/assets/osh%2012.JPG)
+
+- Di postingan wordpress tersebut dijelaskan bahwa sekarang dia sedang berada di New York
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/OhSINT/assets/osh%2013.JPG)
+
+- **Jawaban:**
+```sh
+New York
+```
+
+- **Pertanyaan:** What is the person's password?
+- Klik kanan pada halaman wordpress lalu pilih **View Page Source**
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/OhSINT/assets/osh%2014.JPG)
+
+- Disini kita akan menemukan sebuah password
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/OhSINT/assets/osh%2015.JPG)
+
+- **Jawaban:**
+```sh
+pennYDr0pper.!
+```
