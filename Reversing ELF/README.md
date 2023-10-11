@@ -151,3 +151,180 @@ ltrace ./index.crackme5
 ```sh
 OfdlDSA|3tXb32~X3tX@sX`4tXtz
 ```
+
+## Task 6 Crackme6
+- Download Task File
+- Berikan full akses pada file tersebut
+```sh
+chmod 777 index.crackme6
+```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Reversing%20ELF/assets/rev%2017.JPG)
+
+- Debug dengan tool redare2
+```sh
+r2 -d ./index.crackme6
+```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Reversing%20ELF/assets/rev%2018.JPG)
+
+- Analisa
+```sh
+aaa
+```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Reversing%20ELF/assets/rev%2019.JPG)
+
+- Menampilkan list function. Disini ditemukan fungsi main
+```sh
+afl
+```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Reversing%20ELF/assets/rev%2020.JPG)
+
+- Menampilkan isi fungsi main. Disini ditemukan fungsi **sym.compare_pwd**
+```sh
+pdf @main
+```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Reversing%20ELF/assets/rev%2021.JPG)
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Reversing%20ELF/assets/rev%2022.JPG)
+
+- Masuk ke fungsi **sym.compare_pwd**, disini ditemukan fungsi **sym.my_secure_test**
+```sh
+pdf @sym.compare_pwd
+```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Reversing%20ELF/assets/rev%2023.JPG)
+
+- Masuk ke fungsi **sym.my_secure_test**. Disini terdapat beberapa proses pencocokan karakter
+```sh
+pdf @sym.my_secure_test
+```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Reversing%20ELF/assets/rev%2024.JPG)
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Reversing%20ELF/assets/rev%2025.JPG)
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Reversing%20ELF/assets/rev%2026.JPG)
+
+- Kalau dikumpulkan satu per satu akan ketemu pola sebagai berikut
+```sh
+0x00400597 cmp al, 0x31
+0x004005bf cmp al, 0x33
+0x004005e7 cmp al, 0x33
+0x0040060f cmp al, 0x37
+0x00400637 cmp al, 0x5f 
+0x0040065f cmp al, 0x70
+0x00400684 cmp al, 0x77
+0x004006a9 cmp al, 0x64
+```
+- Sekarang kita gabungkan semua bilangan hexa diatas lalu kita convert ke ASCII di website https://www.rapidtables.com/convert/number/hex-to-ascii.html
+```sh
+313333375f707764
+```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Reversing%20ELF/assets/rev%2027.JPG)
+
+- **Pertanyaan:** What is the password ?
+- **Jawaban:**
+```sh
+1337_pwd
+```
+
+## Task 7 Crackme7
+- Download Task File
+- Berikan full akses pada file tersebut
+```sh
+chmod 777 index.crackme7
+```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Reversing%20ELF/assets/rev%2028.JPG)
+
+- Debug dengan tool redare2
+```sh
+r2 -d ./index.crackme7
+```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Reversing%20ELF/assets/rev%2029.JPG)
+
+- Masuk ke fungsi main
+```sh
+aaa
+afl
+pdf @main
+```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Reversing%20ELF/assets/rev%2030.JPG)
+
+- Scroll kebawah, disini kita menemukan proses pencocokan karakter
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Reversing%20ELF/assets/rev%2031.JPG)
+
+- Sekarang kita convert bilangan hexa tersebut ke bilangan desimal di website https://www.rapidtables.com/convert/number/hex-to-decimal.html
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Reversing%20ELF/assets/rev%2032.JPG)
+
+- Eksekusi file tersebut
+```sh
+./index.crackme7
+```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Reversing%20ELF/assets/rev%2033.JPG)
+
+- Lalu inputkan bilangan `31337` untuk mendapatkan flag
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Reversing%20ELF/assets/rev%2034.JPG)
+
+- **Pertanyaan:** What is the flag ?
+- **Jawaban:**
+```sh
+flag{much_reversing_very_ida_wow}
+```
+
+## Task 8 Crackme8
+- Download Task File
+- Berikan full akses pada file tersebut
+```sh
+chmod 777 index.crackme8
+```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Reversing%20ELF/assets/rev%2035.JPG)
+
+- Debug dengan tool redare2
+```sh
+r2 -d ./index.crackme8
+```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Reversing%20ELF/assets/rev%2036.JPG)
+
+- Masuk ke fungsi main
+```sh
+aaa
+afl
+pdf @main
+```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Reversing%20ELF/assets/rev%2037.JPG)
+
+- Di fungsi main kita menemukan pecocokan karakter dengan bilangan hexa **0xcafef00d** dan sebelumnya ada pemanggilan fungsi **atoi** untuk mengubah string menjadi bilangan integer
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Reversing%20ELF/assets/rev%2038.JPG)
+
+- Konversi bilangan hexa **0xcafef00d** menjadi bilangan desimal di website https://www.rapidtables.com/convert/number/hex-to-decimal.html 
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Reversing%20ELF/assets/rev%2039.JPG)
+
+- Jalankan file dengan memasukkan bilangan desimal hasil konversi untuk mendapatkan flag
+```sh
+./index.crackme8 -889262067
+```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Reversing%20ELF/assets/rev%2040.JPG)
+
+- **Pertanyaan:** What is the flag ?
+- **Jawaban:**
+```sh
+flag{at_least_this_cafe_wont_leak_your_credit_card_numbers}
+```
