@@ -147,3 +147,97 @@ LS0tLS0gLi0tLS0gLi0tLS0gLS0tLS0gLS0tLS0gLi0tLS0gLi0tLS0gLS0tLS0KLS0tLS0gLi0tLS0g
 ```sh
 Let's make this a bit trickier...
 ```
+
+## Task 2 Spectrograms
+- Spektogram adalah representasi visual dari spektrum frekuensi sinyal yang bervariasi terhadap waktu. Ketika diterapkan pada sinyal audio, spektogram kadang-kadang disebut sonograf, voiceprints, atau voicegrams. Jika data direpresentasikan dalam plot 3D, data tersebut dapat disebut air terjun.
+- Download task file
+- Download tool Audacity disini https://www.audacityteam.org/download/linux/ lalu berikan akses execute
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/c4ptur3-th3-fl4g/assets/ctf%2018.JPG)
+
+- Jalankan tool Audacity
+```sh
+./audacity-linux-3.3.3-x64.AppImage
+```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/c4ptur3-th3-fl4g/assets/ctf%2019.JPG)
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/c4ptur3-th3-fl4g/assets/ctf%2020.JPG)
+
+- Drag task file ke tool Audacity
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/c4ptur3-th3-fl4g/assets/ctf%2021.JPG)
+
+- Klik tanda panah lalu pilih Spectogram, maka akan keluar secret text dibalik file audio tersebut
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/c4ptur3-th3-fl4g/assets/ctf%2022.JPG)
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/c4ptur3-th3-fl4g/assets/ctf%2023.JPG)
+
+- **Pertanyaan:** Download the file
+- **Jawaban:**
+```sh
+super secret message
+```
+
+## Task 3 Steganography
+- Steganografi adalah praktik menyembunyikan file, pesan, gambar, atau video di dalam file, pesan, gambar, atau video lain.
+- Download task file
+- Gunakan tool steghide untuk mengekstrak steganografi. Saat dimintai password langsung tekan enter
+```sh
+steghide extract -sf stegosteg.jpg
+```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/c4ptur3-th3-fl4g/assets/ctf%2024.JPG)
+
+- Setelah itu kita buka isi file hasil ekstraksi steganografi
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/c4ptur3-th3-fl4g/assets/ctf%2025.JPG)
+
+- **Pertanyaan:** Decode the image to reveal the answer.
+- **Jawaban:**
+```sh
+SpaghettiSteg
+```
+
+## Task 4 Security through obscurity
+- Download task file
+- Gunakan tool `binwalk` untuk menganalisa apakah terdapat file tersembunyi dibalik gambar tersebut. Dari hasil analisa dibalik gambar terdapat 3 buah file tersembunyi
+```sh
+binwalk meme.jpg 
+```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/c4ptur3-th3-fl4g/assets/ctf%2026.JPG)
+
+- Tambahkan opsi `-e` untuk mengekstrak semua file yang tersembunyi
+```sh
+binwalk meme.jpg 
+```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/c4ptur3-th3-fl4g/assets/ctf%2027.JPG)
+
+- Dari hasil ekstraksi kita menemukan file **hackerchat.png**
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/c4ptur3-th3-fl4g/assets/ctf%2028.JPG)
+
+- Sekarang kita gunakan tool `strings` untuk menganalisa text dibalik gambar tersebut
+```sh
+strings meme.jpg
+```
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/c4ptur3-th3-fl4g/assets/ctf%2029.JPG)
+
+- Dibaris terakhir kita menemukan pesan tersembunyi dibalik task file tersebut
+
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/c4ptur3-th3-fl4g/assets/ctf%2030.JPG)
+
+- **Pertanyaan:** Download and get 'inside' the file. What is the first filename & extension?
+- **Jawaban:**
+```sh
+hackerchat.png
+```
+- **Pertanyaan:** Get inside the archive and inspect the file carefully. Find the hidden text.
+- **Jawaban:**
+```sh
+AHH_YOU_FOUND_ME!
+```
