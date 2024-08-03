@@ -25,7 +25,7 @@ gobuster dir -u http://<IP_Machine> -w /usr/share/wordlists/dirb/common.txt
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Git%20Happens/assets/gh%204.JPG)
 
-- Kita bisa memanfaatkan GitTools ( https://github.com/internetwache/GitTools ) untuk menyalin repository tersebut ke local. Untuk melakukan instalasi cukup jalankan perintah berikut ini
+- Kita bisa memanfaatkan GitTools ( https://github.com/internetwache/GitTools ) untuk menyalin repository tersebut ke local. Untuk melakukan instalasi GitTools cukup jalankan perintah berikut ini
 ```sh
 git clone https://github.com/internetwache/GitTools.git
 ```
@@ -33,6 +33,9 @@ git clone https://github.com/internetwache/GitTools.git
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Git%20Happens/assets/gh%205.JPG)
 
 - Navigasi ke folder **GitTools/Dumper** tempat program **gitdumper.sh** tersimpan
+```sh
+cd GitTools/Dumper
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Git%20Happens/assets/gh%206.JPG)
 

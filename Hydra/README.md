@@ -2,12 +2,15 @@
 - TryHackMe Room: https://tryhackme.com/room/hydra
 - IP Machine: 10.10.93.97
 
-## Pertanyaan/Tugas:
-- Buka url http://10.10.93.97 di browser, setelah dibuka kita langsung diarahkan ke halaman login
+## Task 2 Using Hydra
+- Buka url `http://IP_Machine` di browser, setelah dibuka kita langsung diarahkan ke halaman login
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Hydra/assets/h%201.JPG)
 
-- Lakukan brute force untuk menemukan password dari user molly. Gunakan baris perintah `hydra -l molly -P /usr/share/wordlists/rockyou.txt 10.10.93.97 http-post-form "/login:username=^USER^&password=^PASS^:incorrect"`
+- Lakukan brute force untuk menemukan password dari user `molly` dengan tool `hydra` dan wordlists `rockyou.txt` yang terdapat di kali linux. Format perintah digunakan adalah `hydra <username> <wordlist> MACHINE_IP http-post-form "<path>:<login_credentials>:<invalid_response>"`
+```sh
+hydra -l molly -P /usr/share/wordlists/rockyou.txt IP_Machine http-post-form "/login:username=^USER^&password=^PASS^:incorrect
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Hydra/assets/h%202.JPG)
 
@@ -22,11 +25,17 @@
 THM{2673a7dd116de68e85c48ec0b1f2612e}
 ```
 
-- Lakukan brute force untuk menemukan password SSH dari user molly. Gunakan baris perintah `hydra -l molly -P /usr/share/wordlists/rockyou.txt 10.10.93.97 ssh`
+- Lakukan brute force untuk menemukan password SSH dari user `molly` dengan tool `hydra` dan wordlists `rockyou.txt` yang terdapat di kali linux
+```sh
+hydra -l molly -P /usr/share/wordlists/rockyou.txt IP_Machine ssh
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Hydra/assets/h%204.JPG)
 
-- Gunakan username dan password diatas untuk mengakses SSH, setelah berhasil masuk kita berhasil menemukan file flag2.txt. Buka file tersebut menjawab pertanyaan berikutnya
+- Gunakan username dan password diatas untuk mengakses SSH, setelah berhasil masuk kita berhasil menemukan file `flag2.txt`. Buka file tersebut menjawab pertanyaan berikutnya
+```sh
+cat flag2.txt
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Hydra/assets/h%205.JPG)
 

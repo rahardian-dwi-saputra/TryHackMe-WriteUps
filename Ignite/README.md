@@ -3,7 +3,7 @@
 - IP Machine: 10.10.116.227
 
 ## Task 1 Root it!
-- Scanning server menggunakan nmap. Disini hanya ada 1 port yang terbuka, yaitu port 80 (http)
+- Lakukan port scanning dengan tool `nmap`. Dari hasil scanning hanya ada 1 port yang terbuka, yaitu port 80 (http)
 ```sh
 nmap -sV -sC <IP_Machine>
 ```
@@ -30,11 +30,11 @@ nmap -sV -sC <IP_Machine>
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Ignite/assets/ign%206.JPG)
 
-- Berdasarkan riset, fuel CMS versi 1.4 rentan terhadap serangan Remote Code Execution ( CVE 2018-16763 )
+- Setelah dilakukan pencarian di google, fuel CMS versi 1.4 rentan terhadap serangan Remote Code Execution ( CVE 2018-16763 )
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Ignite/assets/ign%207.JPG)
 
-- Kita bisa memanfaatkan script python3 di link https://gist.github.com/anir0y/8529960c18e212948b0e40ed1fb18d6d#file-fuel-cms-py untuk melakukan exploitasi pada fuel CMS versi 1.4
+- Download script python3 yang berada di link https://gist.github.com/anir0y/8529960c18e212948b0e40ed1fb18d6d#file-fuel-cms-py untuk melakukan exploitasi pada fuel CMS versi 1.4
 - Sekarang kita buat sebuah listener netcat di terminal baru
 ```sh
 nc -lnvp <port>
@@ -56,7 +56,7 @@ python3 fuel-cms.py <IP_Machine>
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Ignite/assets/ign%2010.JPG)
 
-- Disini listener netcat berhasil terkoneksi dengan server dan masuk sebagai user **www-data**
+- Setelah diinput, netcat berhasil terkoneksi dengan server dan masuk sebagai user **www-data**
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Ignite/assets/ign%2011.JPG)
 
