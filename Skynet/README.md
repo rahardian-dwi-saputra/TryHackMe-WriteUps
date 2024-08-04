@@ -3,7 +3,11 @@
 - IP Machine: 10.10.66.97
 
 ## Nmap Report
-- Lakukan scanning dengan tool nmap menggunakan perintah: `nmap -sV -A <IP Machine>`
+- Lakukan port scanning dengan tool `nmap`
+```sh
+nmap -sV -A <IP Machine>
+```
+- Berikut adalah hasil dari port scanning
 
 ```sh
 ┌──(kali㉿kali)-[~]
@@ -56,32 +60,55 @@ Nmap done: 1 IP address (1 host up) scanned in 627.49 seconds
 ```
 
 ## Enumerasi SMB
-- Gunakan perintah `smbclient -L <IP Machine>` untuk membuka list shares. Disini ditemukan user **anonymous** dan **milesdyson** pada SMB Server
+- Karena server menggunakan layanan SMB Server, jadi kita bisa melihat file yang di share didalamnya. Sekarang kita melihat list share yang terdapat di SMB Server. Disini ditemukan user **anonymous** dan **milesdyson** pada SMB Server 
+```sh
+smbclient -L <IP Machine>
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%201.JPG)
 
-- Buka file sharing dari user **anonymous** dengan perintah `smbclient //<IP Machine>/anonymous` lalu tekan enter jika dimintai password. Jika sudah terhubung, ketik `ls` untuk melihat list file dan directory
+- Masuk ke dalam share **anonymous** lalu tekan enter jika dimintai password. Jika sudah terhubung, ketik `ls` untuk melihat list file dan directory
+```sh
+smbclient //<IP Machine>/anonymous
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%202.JPG)
 
-- Download file attention.txt dengan perntah `get attention.txt`
+- Disana terdapat file `attention.txt`, sekarang kita unduh file tersebut ke local
+```sh
+get attention.txt
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%203.JPG)
 
 - Navigasi ke folder `logs`, disana terdapat 3 buah file log. Download semua file dengan perintah `mget *` dan ketik **y** untuk setiap konfirmasi. Selanjutnya keluar dari SMB Client dengan perintah `quit`
+```sh
+cd logs
+mget *
+quit
+```
 
-![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%2024.JPG)
+![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%204.JPG)
 
-- Berikut ini adalah isi file **attention.txt**
+- Berikut ini adalah isi file **attention.txt**. Difile ini ditemukan nama user `milesdyson`
+```sh
+cat attention.txt
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%205.JPG)
 
-- File **log1.txt** ternyata berisi wordlists yang digunakan untuk melakukan brute force
+- Setelah dibuka, file **log1.txt** ternyata berisi wordlists yang digunakan untuk melakukan brute force
+```sh
+cat log1.txt
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%206.JPG)
 
 ## Gobuster Report
-- Baris perintah: `gobuster dir -u http://<IP Machine> -w /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt`
+- Lakukan pencarian halaman web tersembunyi dengan tool `gobuster`
+```sh
+gobuster dir -u http://<IP Machine> -w /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%207.JPG)
 
