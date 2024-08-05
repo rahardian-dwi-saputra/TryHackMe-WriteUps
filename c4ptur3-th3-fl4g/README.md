@@ -152,6 +152,9 @@ Let's make this a bit trickier...
 - Spektogram adalah representasi visual dari spektrum frekuensi sinyal yang bervariasi terhadap waktu. Ketika diterapkan pada sinyal audio, spektogram kadang-kadang disebut sonograf, voiceprints, atau voicegrams. Jika data direpresentasikan dalam plot 3D, data tersebut dapat disebut air terjun.
 - Download task file
 - Download tool Audacity disini https://www.audacityteam.org/download/linux/ lalu berikan akses execute
+```sh
+chmod +x audacity-linux-3.3.3-x64.AppImage
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/c4ptur3-th3-fl4g/assets/ctf%2018.JPG)
 
@@ -191,6 +194,9 @@ steghide extract -sf stegosteg.jpg
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/c4ptur3-th3-fl4g/assets/ctf%2024.JPG)
 
 - Setelah itu kita buka isi file hasil ekstraksi steganografi
+```sh
+cat steganopayload2248.txt
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/c4ptur3-th3-fl4g/assets/ctf%2025.JPG)
 
@@ -211,7 +217,7 @@ binwalk meme.jpg
 
 - Tambahkan opsi `-e` untuk mengekstrak semua file yang tersembunyi
 ```sh
-binwalk meme.jpg 
+binwalk meme.jpg -e
 ```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/c4ptur3-th3-fl4g/assets/ctf%2027.JPG)

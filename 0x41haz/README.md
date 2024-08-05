@@ -33,9 +33,12 @@ hexeditor 0x41haz.0x41haz
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/0x41haz/assets/haz%206.JPG)
 
-- Sekarang kita analisa code assembly dengan tool `redare2`
+- Sekarang kita analisa code assembly dengan tool `redare2` dan masuk ke function main
 ```sh
 r2 0x41haz.0x41haz
+aaa
+s main
+pdf
 ```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/0x41haz/assets/haz%207.JPG)
